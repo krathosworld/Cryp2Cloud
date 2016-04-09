@@ -1,6 +1,6 @@
 ﻿namespace Cryp2Cloud
 {
-    partial class Form1
+    partial class inicio
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,9 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(inicio));
+            this.SuspendLayout();
+            // 
+            // inicio
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(452, 645);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(468, 684);
+            this.MinimumSize = new System.Drawing.Size(468, 684);
+            this.Name = "inicio";
+            this.Opacity = 0.98D;
+            this.ShowIcon = false;
+            this.Text = "Cryp2Cloud";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -1,1 +1,13 @@
 C:\Users\Master\Documents\GitHub\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Cryp2Cloud.exe.config
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Cryp2Cloud.exe.config
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Cryp2Cloud.exe
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Cryp2Cloud.pdb
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.csprojResolveAssemblyReference.cache
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.inicio.resources
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Properties.Resources.resources
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.csproj.GenerateResource.Cache
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.exe
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.pdb
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Registro.resources
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Configuracion.resources
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Principal.resources

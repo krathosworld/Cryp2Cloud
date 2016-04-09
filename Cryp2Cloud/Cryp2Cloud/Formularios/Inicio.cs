@@ -16,5 +16,51 @@ namespace Cryp2Cloud
         {
             InitializeComponent();
         }
+
+        private void textBox_usuario_Enter(object sender, EventArgs e)
+        {
+            if(textBox_usuario.Text=="Usuario:")
+            {
+                limpiar_casilla(sender);
+            }
+        }
+        private void limpiar_casilla(object sender)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+        }
+
+        private void textBox_contraseña_Enter(object sender, EventArgs e)
+        {
+            limpiar_casilla(sender);
+            textBox_contraseña.PasswordChar = '*';
+        }
+
+        private void btn_iniciar_sesion_MouseEnter(object sender, EventArgs e)
+        {
+            btn_iniciar_sesion.BackgroundImage = Cryp2Cloud.Properties.Resources.Iniciar_sesion2;
+        }
+
+        private void btn_iniciar_sesion_MouseLeave(object sender, EventArgs e)
+        {
+            btn_iniciar_sesion.BackgroundImage = Cryp2Cloud.Properties.Resources.Iniciar_sesion1;
+        }
+
+        private void textBox_usuario_Leave(object sender, EventArgs e)
+        {
+            if(textBox_usuario.Text=="")
+            {
+                textBox_usuario.Text = "Usuario:";
+            }
+        }
+
+        private void textBox_contraseña_Leave(object sender, EventArgs e)
+        {
+            if (textBox_contraseña.Text == "")
+            {
+                textBox_contraseña.PasswordChar = '\0';
+                textBox_contraseña.Text = "Contraseña:";
+            }
+        }
     }
 }

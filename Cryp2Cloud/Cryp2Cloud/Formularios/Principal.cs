@@ -21,5 +21,13 @@ namespace Cryp2Cloud.Formularios
         {
 
         }
+
+        private void btn_ajustes_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Formularios.Configuracion form = new Formularios.Configuracion();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }

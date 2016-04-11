@@ -54,6 +54,7 @@
             this.btn_iniciar_sesion.Size = new System.Drawing.Size(388, 50);
             this.btn_iniciar_sesion.TabIndex = 0;
             this.btn_iniciar_sesion.UseVisualStyleBackColor = false;
+            this.btn_iniciar_sesion.Click += new System.EventHandler(this.btn_iniciar_sesion_Click);
             this.btn_iniciar_sesion.MouseEnter += new System.EventHandler(this.btn_iniciar_sesion_MouseEnter);
             this.btn_iniciar_sesion.MouseLeave += new System.EventHandler(this.btn_iniciar_sesion_MouseLeave);
             // 
@@ -100,6 +101,7 @@
             this.btn_crear_cuenta.Size = new System.Drawing.Size(388, 50);
             this.btn_crear_cuenta.TabIndex = 3;
             this.btn_crear_cuenta.UseVisualStyleBackColor = false;
+            this.btn_crear_cuenta.Click += new System.EventHandler(this.btn_crear_cuenta_Click);
             // 
             // ListaImagenes
             // 

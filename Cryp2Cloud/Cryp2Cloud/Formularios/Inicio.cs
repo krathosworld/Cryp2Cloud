@@ -62,5 +62,21 @@ namespace Cryp2Cloud
                 textBox_contraseña.Text = "Contraseña:";
             }
         }
+
+        private void btn_iniciar_sesion_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Formularios.Principal form = new Formularios.Principal();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void btn_crear_cuenta_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Formularios.Registro form = new Formularios.Registro();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -63,6 +63,26 @@ namespace Cryp2Cloud.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Acceder1 {
+            get {
+                object obj = ResourceManager.GetObject("Acceder1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Acceder2 {
+            get {
+                object obj = ResourceManager.GetObject("Acceder2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap crear_cuenta {
             get {
                 object obj = ResourceManager.GetObject("crear_cuenta", resourceCulture);

@@ -118,6 +118,36 @@
   <ItemGroup>
     <None Include="Resources\Acceder2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\añadir_archivos1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Double_Right-normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Double_Right-pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\añadir_archivos2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Double_Right-normal2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Double_Right-pressed2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Acceder11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Acceder21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grardar_cambios1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guardar_cambios2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -55,5 +55,20 @@ namespace Cryp2Cloud.Formularios
             }
         }
 
+        private void btn_acceder_MouseEnter(object sender, EventArgs e)
+        {
+            btn_acceder.BackgroundImage = Cryp2Cloud.Properties.Resources.Guardar_cambios2;
+        }
+
+        private void btn_acceder_MouseLeave(object sender, EventArgs e)
+        {
+            btn_acceder.BackgroundImage = Cryp2Cloud.Properties.Resources.Guardar_cambios1;
+        }
+
+        private void btn_acceder_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Close();
+        }
     }
 }

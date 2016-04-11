@@ -14,7 +14,46 @@ namespace Cryp2Cloud.Formularios
     {
         public Configuracion()
         {
+            BigCheckBox check_dropbox = new BigCheckBox(405, 232,"check_dropbox");
+            BigCheckBox check_drive = new BigCheckBox(405, 314,"check_drive");
+            BigCheckBox check_mega = new BigCheckBox(405, 400,"check_mega");
+
+            this.Controls.Add(check_dropbox);
+            this.Controls.Add(check_drive);
+            this.Controls.Add(check_mega);
+
             InitializeComponent();
         }
+
+        class BigCheckBox : CheckBox
+        {
+            public BigCheckBox(int x, int y, string nombre)
+            {
+                this.Text = "\0";
+                this.TextAlign = ContentAlignment.MiddleRight;
+                this.Location = new Point (x,y);
+                this.Name = nombre;
+            }
+
+            public override bool AutoSize
+            {
+                set { base.AutoSize = false; }
+                get { return base.AutoSize; }
+            }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                base.OnPaint(e);
+
+                this.Height = 25;
+                this.Width = 25;
+                int squareSide = 25;
+
+                Rectangle rect = new Rectangle(new Point(0, 1), new Size(squareSide, squareSide));
+
+                ControlPaint.DrawCheckBox(e.Graphics, rect, this.Checked ? ButtonState.Checked : ButtonState.Normal);
+            }
+        }
+
     }
 }

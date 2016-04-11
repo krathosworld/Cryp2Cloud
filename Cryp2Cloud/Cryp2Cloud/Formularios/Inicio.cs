@@ -14,6 +14,8 @@ namespace Cryp2Cloud
     {
         public inicio()
         {
+
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
 
@@ -75,6 +77,7 @@ namespace Cryp2Cloud
         {
             this.Hide();
             Formularios.Registro form = new Formularios.Registro();
+            form.Location = this.Location;
             form.ShowDialog();
             this.Close();
         }

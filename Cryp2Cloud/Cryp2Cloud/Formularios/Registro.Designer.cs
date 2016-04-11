@@ -66,6 +66,8 @@
             this.textBox_usuario.Size = new System.Drawing.Size(367, 28);
             this.textBox_usuario.TabIndex = 2;
             this.textBox_usuario.Text = "Usuario:";
+            this.textBox_usuario.Enter += new System.EventHandler(this.textBox_usuario_Enter);
+            this.textBox_usuario.Leave += new System.EventHandler(this.textBox_usuario_Leave);
             // 
             // textBox_contraseña
             // 
@@ -77,6 +79,8 @@
             this.textBox_contraseña.Size = new System.Drawing.Size(367, 28);
             this.textBox_contraseña.TabIndex = 3;
             this.textBox_contraseña.Text = "Contraseña:";
+            this.textBox_contraseña.Enter += new System.EventHandler(this.textBox_contraseña_Enter);
+            this.textBox_contraseña.Leave += new System.EventHandler(this.textBox_contraseña_Leave);
             // 
             // textBox1
             // 
@@ -88,6 +92,8 @@
             this.textBox1.Size = new System.Drawing.Size(367, 28);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "Repetir Contraseña:";
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // Registro
             // 

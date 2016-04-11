@@ -41,5 +41,50 @@ namespace Cryp2Cloud.Formularios
             tb.Text = string.Empty;
         }
 
+        private void textBox_usuario_Enter(object sender, EventArgs e)
+        {
+            if (textBox_usuario.Text == "Usuario:")
+            {
+                limpiar_casilla(sender);
+            }
+        }
+
+        private void textBox_contraseña_Enter(object sender, EventArgs e)
+        {
+            limpiar_casilla(sender);
+            textBox_contraseña.PasswordChar = '*';
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+                limpiar_casilla(sender);
+                textBox1.PasswordChar = '*';
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.PasswordChar = '\0';
+                textBox1.Text = "Repetir Contraseña:";
+            }
+        }
+
+        private void textBox_usuario_Leave(object sender, EventArgs e)
+        {
+            if (textBox_usuario.Text == "")
+            {
+                textBox_usuario.Text = "Usuario:";
+            }
+        }
+
+        private void textBox_contraseña_Leave(object sender, EventArgs e)
+        {
+            if (textBox_contraseña.Text == "")
+            {
+                textBox_contraseña.PasswordChar = '\0';
+                textBox_contraseña.Text = "Contraseña:";
+            }
+        }
     }
 }

@@ -69,6 +69,7 @@
             this.btn_explorar_dropbox.TabIndex = 3;
             this.btn_explorar_dropbox.Text = "...";
             this.btn_explorar_dropbox.UseVisualStyleBackColor = false;
+            this.btn_explorar_dropbox.Click += new System.EventHandler(this.btn_explorar_dropbox_Click);
             // 
             // btn_explorar_drive
             // 
@@ -89,6 +90,7 @@
             this.btn_explorar_drive.TabIndex = 4;
             this.btn_explorar_drive.Text = "...";
             this.btn_explorar_drive.UseVisualStyleBackColor = false;
+            this.btn_explorar_drive.Click += new System.EventHandler(this.btn_explorar_drive_Click);
             // 
             // btn_explorar_mega
             // 
@@ -109,6 +111,7 @@
             this.btn_explorar_mega.TabIndex = 5;
             this.btn_explorar_mega.Text = "...";
             this.btn_explorar_mega.UseVisualStyleBackColor = false;
+            this.btn_explorar_mega.Click += new System.EventHandler(this.btn_explorar_mega_Click);
             // 
             // btn_explorar_descarga
             // 
@@ -129,6 +132,7 @@
             this.btn_explorar_descarga.TabIndex = 6;
             this.btn_explorar_descarga.Text = "...";
             this.btn_explorar_descarga.UseVisualStyleBackColor = false;
+            this.btn_explorar_descarga.Click += new System.EventHandler(this.btn_explorar_descarga_Click);
             // 
             // textBox_drive
             // 

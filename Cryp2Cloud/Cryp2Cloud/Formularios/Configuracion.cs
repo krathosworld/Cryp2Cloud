@@ -70,5 +70,62 @@ namespace Cryp2Cloud.Formularios
             this.Hide();
             this.Close();
         }
+
+        private void btn_explorar_dropbox_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog Explorador = new FolderBrowserDialog();
+            Explorador.SelectedPath = "c:\'";
+
+            String Direccion = null;
+
+            if(Explorador.ShowDialog() == DialogResult.OK)
+            {
+                Direccion = @Explorador.SelectedPath;
+                textBox_dropbox.Text = Direccion;
+            }
+        }
+
+        private void btn_explorar_drive_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog Explorador = new FolderBrowserDialog();
+            Explorador.SelectedPath = "c:\'";
+
+            String Direccion = null;
+
+            if (Explorador.ShowDialog() == DialogResult.OK)
+            {
+                Direccion = @Explorador.SelectedPath;
+                textBox_drive.Text = Direccion;
+            }
+
+        }
+
+        private void btn_explorar_mega_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog Explorador = new FolderBrowserDialog();
+            Explorador.SelectedPath = "c:\'";
+
+            String Direccion = null;
+
+            if (Explorador.ShowDialog() == DialogResult.OK)
+            {
+                Direccion = @Explorador.SelectedPath;
+                textBox_mega.Text = Direccion;
+            }
+        }
+
+        private void btn_explorar_descarga_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog Explorador = new FolderBrowserDialog();
+            Explorador.SelectedPath = "c:\'";
+
+            String Direccion = null;
+
+            if (Explorador.ShowDialog() == DialogResult.OK)
+            {
+                Direccion = @Explorador.SelectedPath;
+                textBox_descargas.Text = Direccion;
+            }
+        }
     }
 }

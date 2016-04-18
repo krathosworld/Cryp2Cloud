@@ -19,12 +19,17 @@ namespace Cryp2Cloud.Formularios
 
         private void btn_acceder_Click(object sender, EventArgs e)
         {
+            
+            //Cambiar la ventana
             this.Hide();
             Formularios.Principal form = new Formularios.Principal();
             form.ShowDialog();
             this.Close();
         }
 
+
+
+        //LANZADORES DE EVENTOS
         private void btn_acceder_MouseEnter(object sender, EventArgs e)
         {
             btn_acceder.BackgroundImage = Cryp2Cloud.Properties.Resources.Acceder2;

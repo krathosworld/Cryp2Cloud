@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,7 @@ namespace Cryp2Cloud.Formularios
 
         }
 
+        //MANEJADORES DE EVENTOS
         private void btn_ajustes_Click(object sender, EventArgs e)
         {
             Formularios.Configuracion form = new Formularios.Configuracion();
@@ -61,6 +63,41 @@ namespace Cryp2Cloud.Formularios
         private void Principal_Activated(object sender, EventArgs e)
         {
             this.Refresh();
+        }
+
+        private void btn_añadir_archivo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Explorador = new OpenFileDialog();
+            Explorador.InitialDirectory = "c:\'";
+
+            String Direccion = null;
+
+            if (Explorador.ShowDialog() == DialogResult.OK)
+            {
+                Direccion = @Explorador.FileName;
+                listaArchivos.Items.Add(Explorador.SafeFileName, 0);
+                //Guardar en un array las direcciones de los archivos
+            }
+        }
+
+        private void listaArchivos_DragEnter(object sender, DragEventArgs e)
+        {
+                
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void listaArchivos_DragDrop(object sender, DragEventArgs e)
+        {
+            
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string file in files)
+            {
+                if (!Directory.Exists(file))
+                {
+                    listaArchivos.Items.Add(Path.GetFileName(file), 0);
+                    //Guardar en un array las direcciones de cada archivo
+                }
+            }
         }
     }
 }

@@ -13,3 +13,4 @@ E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formulari
 E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Principal.resources
 E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Formularios\MiBaseDeDatos.mdf
 E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Formularios\MiBaseDeDatos_log.ldf
+E:\Nueva carpeta\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\GongShell.dll

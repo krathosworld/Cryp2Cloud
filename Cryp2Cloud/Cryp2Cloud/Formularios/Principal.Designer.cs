@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.lista_cifrado = new System.Windows.Forms.ComboBox();
             this.btn_ajustes = new System.Windows.Forms.Button();
@@ -35,6 +36,10 @@
             this.btn_crypt = new System.Windows.Forms.Button();
             this.label_usuario = new System.Windows.Forms.Label();
             this.btn_decrypt = new System.Windows.Forms.Button();
+            this.Vista_arbol = new GongSolutions.Shell.ShellTreeView();
+            this.Vista_carpeta = new GongSolutions.Shell.ShellView();
+            this.listaArchivos = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // lista_cifrado
@@ -86,6 +91,7 @@
             this.btn_añadir_archivo.Size = new System.Drawing.Size(245, 38);
             this.btn_añadir_archivo.TabIndex = 2;
             this.btn_añadir_archivo.UseVisualStyleBackColor = false;
+            this.btn_añadir_archivo.Click += new System.EventHandler(this.btn_añadir_archivo_Click);
             this.btn_añadir_archivo.MouseEnter += new System.EventHandler(this.btn_añadir_archivo_MouseEnter);
             this.btn_añadir_archivo.MouseLeave += new System.EventHandler(this.btn_añadir_archivo_MouseLeave);
             // 
@@ -140,12 +146,54 @@
             this.btn_decrypt.MouseEnter += new System.EventHandler(this.btn_decrypt_MouseEnter);
             this.btn_decrypt.MouseLeave += new System.EventHandler(this.btn_decrypt_MouseLeave);
             // 
+            // Vista_arbol
+            // 
+            this.Vista_arbol.BackColor = System.Drawing.SystemColors.Control;
+            this.Vista_arbol.Location = new System.Drawing.Point(555, 120);
+            this.Vista_arbol.Name = "Vista_arbol";
+            this.Vista_arbol.ShellView = this.Vista_carpeta;
+            this.Vista_arbol.Size = new System.Drawing.Size(150, 454);
+            this.Vista_arbol.TabIndex = 6;
+            // 
+            // Vista_carpeta
+            // 
+            this.Vista_carpeta.Location = new System.Drawing.Point(706, 120);
+            this.Vista_carpeta.Name = "Vista_carpeta";
+            this.Vista_carpeta.Size = new System.Drawing.Size(225, 454);
+            this.Vista_carpeta.StatusBar = null;
+            this.Vista_carpeta.TabIndex = 7;
+            this.Vista_carpeta.Text = "shellView1";
+            this.Vista_carpeta.View = GongSolutions.Shell.ShellViewStyle.SmallIcon;
+            // 
+            // listaArchivos
+            // 
+            this.listaArchivos.AllowDrop = true;
+            this.listaArchivos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listaArchivos.LargeImageList = this.imageList1;
+            this.listaArchivos.Location = new System.Drawing.Point(62, 119);
+            this.listaArchivos.Name = "listaArchivos";
+            this.listaArchivos.Size = new System.Drawing.Size(377, 456);
+            this.listaArchivos.SmallImageList = this.imageList1;
+            this.listaArchivos.TabIndex = 8;
+            this.listaArchivos.UseCompatibleStateImageBehavior = false;
+            this.listaArchivos.DragDrop += new System.Windows.Forms.DragEventHandler(this.listaArchivos_DragDrop);
+            this.listaArchivos.DragEnter += new System.Windows.Forms.DragEventHandler(this.listaArchivos_DragEnter);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Icon-Document04-Blue.png");
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(992, 645);
+            this.Controls.Add(this.listaArchivos);
+            this.Controls.Add(this.Vista_carpeta);
+            this.Controls.Add(this.Vista_arbol);
             this.Controls.Add(this.btn_decrypt);
             this.Controls.Add(this.label_usuario);
             this.Controls.Add(this.btn_crypt);
@@ -173,5 +221,9 @@
         private System.Windows.Forms.Button btn_crypt;
         private System.Windows.Forms.Label label_usuario;
         private System.Windows.Forms.Button btn_decrypt;
+        private GongSolutions.Shell.ShellTreeView Vista_arbol;
+        private GongSolutions.Shell.ShellView Vista_carpeta;
+        private System.Windows.Forms.ListView listaArchivos;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

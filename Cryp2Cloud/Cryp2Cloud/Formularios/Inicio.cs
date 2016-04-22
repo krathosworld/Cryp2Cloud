@@ -70,21 +70,38 @@ namespace Cryp2Cloud
         {
             using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Formularios\MiBaseDeDatos.mdf;Integrated Security=True"))
             {
-                using (SqlCommand cmd = new SqlCommand("Select * From Usuario", conn))
+                using (SqlCommand cmd = new SqlCommand("Select * From Usuario where id =  '" + textBox_usuario.Text.ToLower() + "' and contraseña = '" + textBox_contraseña.Text + "'", conn))
                 {
                     conn.Open();
                     using (SqlDataReader rd = cmd.ExecuteReader())
                     {
-                        MessageBox.Show("Esto va bien");
+                        if(rd.HasRows)
+                        {
+                            while(rd.Read())
+                            {
+                                String id = rd["Id"].ToString();
+                                String passwd = rd["Contraseña"].ToString();
+                                
+                                //Falta compartir los datos con el siguiente formulario
+                                this.Hide();
+                                Formularios.Principal form = new Formularios.Principal();
+                                form.ShowDialog();
+                                this.Close();
+                            }
+                            rd.NextResult();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El nombre de usuario o la contraseña no son correctas");
+                            rd.Close();
+                        }
+                        
                     }
+                    conn.Close();
                 }
 
             }
                 
-            this.Hide();
-            Formularios.Principal form = new Formularios.Principal();
-            form.ShowDialog();
-            this.Close();
         }
 
         private void btn_crear_cuenta_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Cryp2Cloud
 {
@@ -67,6 +68,19 @@ namespace Cryp2Cloud
 
         private void btn_iniciar_sesion_Click(object sender, EventArgs e)
         {
+            using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Formularios\MiBaseDeDatos.mdf;Integrated Security=True"))
+            {
+                using (SqlCommand cmd = new SqlCommand("Select * From Usuario", conn))
+                {
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader())
+                    {
+                        MessageBox.Show("Esto va bien");
+                    }
+                }
+
+            }
+                
             this.Hide();
             Formularios.Principal form = new Formularios.Principal();
             form.ShowDialog();

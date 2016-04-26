@@ -45,6 +45,7 @@ namespace Cryp2Cloud.Formularios
         private void btn_ajustes_Click(object sender, EventArgs e)
         {
             Formularios.Configuracion form = new Formularios.Configuracion();
+            form._usuario = this._usuario;
             form.ShowDialog();
         }
 

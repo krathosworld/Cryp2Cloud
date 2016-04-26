@@ -46,7 +46,6 @@ namespace Cryp2Cloud.Formularios
         {
             Formularios.Configuracion form = new Formularios.Configuracion();
             form._usuario = this._usuario;
-            form._principal = this;
             form.ShowDialog();
         }
 

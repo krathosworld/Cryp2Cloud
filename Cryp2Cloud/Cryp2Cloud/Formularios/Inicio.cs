@@ -82,9 +82,9 @@ namespace Cryp2Cloud
                                 String id = rd["Id"].ToString();
                                 String passwd = rd["Contraseña"].ToString();
                                 
-                                //Falta compartir los datos con el siguiente formulario
                                 this.Hide();
                                 Formularios.Principal form = new Formularios.Principal();
+                                form._usuario = textBox_usuario.Text;
                                 form.ShowDialog();
                                 this.Close();
                             }

@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace Cryp2Cloud.Formularios
 {
-    public partial class Configuracion: Form
+    public partial class Configuracion : Form
     {
+
+        //Persistencia de datos de usuario
+        public String _usuario = null;
+
         public Configuracion()
         {
-            BigCheckBox check_dropbox = new BigCheckBox(405, 232,"check_dropbox");
-            BigCheckBox check_drive = new BigCheckBox(405, 314,"check_drive");
-            BigCheckBox check_mega = new BigCheckBox(405, 400,"check_mega");
+            BigCheckBox check_dropbox = new BigCheckBox(405, 232, "check_dropbox");
+            BigCheckBox check_drive = new BigCheckBox(405, 314, "check_drive");
+            BigCheckBox check_mega = new BigCheckBox(405, 400, "check_mega");
 
             this.Controls.Add(check_dropbox);
             this.Controls.Add(check_drive);
@@ -31,7 +35,7 @@ namespace Cryp2Cloud.Formularios
             {
                 this.Text = "\0";
                 this.TextAlign = ContentAlignment.MiddleRight;
-                this.Location = new Point (x,y);
+                this.Location = new Point(x, y);
                 this.Name = nombre;
             }
 
@@ -78,7 +82,7 @@ namespace Cryp2Cloud.Formularios
 
             String Direccion = null;
 
-            if(Explorador.ShowDialog() == DialogResult.OK)
+            if (Explorador.ShowDialog() == DialogResult.OK)
             {
                 Direccion = @Explorador.SelectedPath;
                 textBox_dropbox.Text = Direccion;

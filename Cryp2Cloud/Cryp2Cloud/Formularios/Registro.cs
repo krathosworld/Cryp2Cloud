@@ -20,10 +20,10 @@ namespace Cryp2Cloud.Formularios
 
         private void btn_acceder_Click(object sender, EventArgs e)
         {
-            if(comprobaciones())
+            if (comprobaciones())
             {
                 connBBDD();
-            } 
+            }
         }
 
         //Realiza las comprobaciones sobre los campos a rellenar
@@ -36,7 +36,7 @@ namespace Cryp2Cloud.Formularios
             String contraseña = textBox_contraseña.Text;
             String repContraseña = textBox1.Text;
 
-            if(usuario=="Usuario:" || contraseña == "Contraseña:" || repContraseña=="Repetir Contraseña:")
+            if (usuario == "Usuario:" || contraseña == "Contraseña:" || repContraseña == "Repetir Contraseña:")
             {
                 errores += "Debe rellenar todos los campos\n";
                 resultado = false;
@@ -57,9 +57,9 @@ namespace Cryp2Cloud.Formularios
                 errores += "La contraseña no puede tener más de 16 caracteres\n";
                 resultado = false;
             }
-            
 
-            if(!resultado)
+
+            if (!resultado)
             {
                 MessageBox.Show(errores);
             }
@@ -85,17 +85,27 @@ namespace Cryp2Cloud.Formularios
                         else
                         {
                             rd.Close();
-                            using (SqlCommand cmd2 = new SqlCommand("Insert Usuario (Id, Contraseña) VALUES ('" + textBox_usuario.Text.ToLower() + "','" + textBox_contraseña.Text + "')", conn))
-                            {
-                                cmd.CommandType = System.Data.CommandType.Text;
-                                cmd2.ExecuteNonQuery(); //Se inserta el nuevo usuario
-                                this.Hide();
-                                Formularios.Principal form = new Formularios.Principal();
-                                Formularios.Configuracion form2 = new Formularios.Configuracion();
-                                form2.ShowDialog();
-                                form.ShowDialog();
-                                this.Close();
-                            }
+
+                            //Inicializamos el DataSet que conecta con la tabla usuarios
+                            BBDDDataSetTableAdapters.UsuarioTableAdapter usuarioTableAdapter;
+                            usuarioTableAdapter = new BBDDDataSetTableAdapters.UsuarioTableAdapter();
+                            String usuario = textBox_usuario.Text.ToLower();
+                            String contraseña = textBox_contraseña.Text;
+
+                            //Insertamos el nuevo usuario en la base de datos
+                            usuarioTableAdapter.Insert(usuario, contraseña, null, null, null, null, false, false, false);
+
+                            this.Hide();
+                            Formularios.Principal form = new Formularios.Principal();
+                            Formularios.Configuracion form2 = new Formularios.Configuracion();
+
+                            //Cargamos el usuario en el resto de formularios
+                            form._usuario = usuario;
+                            form2._usuario = usuario;
+
+                            form2.ShowDialog();
+                            form.ShowDialog();
+                            this.Close();
                         }
                     }
 
@@ -103,7 +113,7 @@ namespace Cryp2Cloud.Formularios
                 }
             }
 
-         }
+        }
 
 
 
@@ -140,8 +150,8 @@ namespace Cryp2Cloud.Formularios
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
-                limpiar_casilla(sender);
-                textBox1.PasswordChar = '*';
+            limpiar_casilla(sender);
+            textBox1.PasswordChar = '*';
         }
 
         private void textBox1_Leave(object sender, EventArgs e)

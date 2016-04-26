@@ -11,16 +11,34 @@ using System.Windows.Forms;
 
 namespace Cryp2Cloud.Formularios
 {
-    public partial class Principal: Form
+    public partial class Principal : Form
     {
+        //Nombre de usuario para mantener sesión
+        public string _usuario = null;
+
+        //Rutas de los campos a copiar
+        public string _dirDrop = null;
+        public string _dirMega = null;
+        public string _dirDrive = null;
+        public string _dir_descarga = null;
+
+        //Validación de las rutas a copiar
+        public bool _checkDrop = false;
+        public bool _checkMega = false;
+        public bool _checkDrive = false;
+
+        List<String> rutas = new List<string>();
+
+
         public Principal()
         {
             InitializeComponent();
+            
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
-
+            label_usuario.Text = _usuario.ToUpper();
         }
 
         //MANEJADORES DE EVENTOS
@@ -70,32 +88,33 @@ namespace Cryp2Cloud.Formularios
             OpenFileDialog Explorador = new OpenFileDialog();
             Explorador.InitialDirectory = "c:\'";
 
-            String Direccion = null;
+            string Direccion = null;
 
             if (Explorador.ShowDialog() == DialogResult.OK)
             {
                 Direccion = @Explorador.FileName;
-                listaArchivos.Items.Add(Explorador.SafeFileName, 0);
-                //Guardar en un array las direcciones de los archivos
+                listaArchivos.Items.Add(Explorador.SafeFileName, 0); //Agrega el archivo a la lista de archivos en pantalla
+                rutas.Add(Direccion); //Almacenamos la dirección del archivo en una lista
             }
         }
 
         private void listaArchivos_DragEnter(object sender, DragEventArgs e)
         {
-                
-                e.Effect = DragDropEffects.Copy;
+
+            e.Effect = DragDropEffects.Copy;
         }
 
         private void listaArchivos_DragDrop(object sender, DragEventArgs e)
         {
-            
+
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string file in files)
             {
-                if (!Directory.Exists(file))
+                if (!Directory.Exists(file)) //Comprueba que no se trate de una carpeta
                 {
                     listaArchivos.Items.Add(Path.GetFileName(file), 0);
                     //Guardar en un array las direcciones de cada archivo
+                    rutas.Add(file); //Agrega la ruta del archivo a la lista de rutas de los archivos
                 }
             }
         }

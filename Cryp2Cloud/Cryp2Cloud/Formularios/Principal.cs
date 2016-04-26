@@ -46,6 +46,10 @@ namespace Cryp2Cloud.Formularios
         {
             Formularios.Configuracion form = new Formularios.Configuracion();
             form._usuario = this._usuario;
+<<<<<<< HEAD
+=======
+            form._principal = this;
+>>>>>>> refs/remotes/origin/Pedro
             form.ShowDialog();
         }
 

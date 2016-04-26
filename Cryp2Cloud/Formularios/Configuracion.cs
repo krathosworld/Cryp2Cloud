@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Cryp2Cloud.Formularios
@@ -13,6 +14,7 @@ namespace Cryp2Cloud.Formularios
 
         //Persistencia de datos de usuario
         public String _usuario = null;
+        public Formularios.Principal _principal = null; //Sirve para actualizar los datos en la ventana principal
 
         BigCheckBox check_dropbox = new BigCheckBox(405, 232, "check_dropbox");
         BigCheckBox check_drive = new BigCheckBox(405, 314, "check_drive");
@@ -69,14 +71,67 @@ namespace Cryp2Cloud.Formularios
 
         private void btn_acceder_Click(object sender, EventArgs e)
         {
-            if(!check_dropbox.Checked && !check_drive.Checked && !check_mega.Checked)
+            if (!check_dropbox.Checked && !check_drive.Checked && !check_mega.Checked)
             {
                 MessageBox.Show("Debe seleccionar un servicio");
             }
+            else if (!Directory.Exists(textBox_descargas.Text)) //Comprueba que la ruta especificada exista en el ordenador
+            {
+                MessageBox.Show("La ruta de descargas no es válida, por favor introdúzcala de nuevo");
+            }
+            else if (!Directory.Exists(textBox_drive.Text) && check_drive.Checked) //Comprueba que la ruta especificada exista en el ordenador (Sólo si ésta ha sido seleccionada)
+            {
+                MessageBox.Show("La ruta de drive no es válida, por favor introdúzcala de nuevo");
+            }
+            else if (!Directory.Exists(textBox_dropbox.Text) && check_dropbox.Checked) //Comprueba que la ruta especificada exista en el ordenador (Sólo si ésta ha sido seleccionada)
+            {
+                MessageBox.Show("La ruta de dropbox no es válida, por favor introdúzcala de nuevo");
+            }
+            else if (!Directory.Exists(textBox_mega.Text) && check_mega.Checked) //Comprueba que la ruta especificada exista en el ordenador (Sólo si ésta ha sido seleccionada)
+            {
+                MessageBox.Show("La ruta de mega no es válida, por favor introdúzcala de nuevo");
+            }
             else
             {
-                this.Hide();
-                this.Close();
+                using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Formularios\MiBaseDeDatos.mdf;Integrated Security=True"))
+                {
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Usuario SET [DirDropbox]=@dirDropbox2, [DirDrive]=@dirDrive2, [DirMega]=@dirMega2, [DirDefault]=@dirDefault2, [CheckMega]=@checkMega2, [CheckDropbox]=@checkDropbox2, [CheckDrive] = @checkDrive2 where id = @usuario2", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dirDropbox2", textBox_dropbox.Text);
+                        cmd.Parameters.AddWithValue("@dirDrive2", textBox_drive.Text);
+                        cmd.Parameters.AddWithValue("@dirMega2", textBox_mega.Text);
+                        cmd.Parameters.AddWithValue("@dirDefault2", textBox_descargas.Text);
+                        cmd.Parameters.AddWithValue("@checkMega2", check_mega.Checked);
+                        cmd.Parameters.AddWithValue("@checkDropbox2", check_dropbox.Checked);
+                        cmd.Parameters.AddWithValue("@checkDrive2", check_drive.Checked);
+                        cmd.Parameters.AddWithValue("@usuario2", _usuario);
+
+                        try
+                        {
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                            //Modificar las variables locales de Principal que se vayan a necesitar
+                            _principal._checkDrive = check_drive.Checked;
+                            _principal._checkDrop = check_dropbox.Checked;
+                            _principal._checkMega = check_mega.Checked;
+                            _principal._dirDrive = textBox_drive.Text;
+                            _principal._dirDrop = textBox_dropbox.Text;
+                            _principal._dirMega = textBox_mega.Text;
+                            _principal._dir_descarga = textBox_descargas.Text;
+
+                            this.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            //Cambiar por la excepción en caso de fallar la inserción
+                            MessageBox.Show(ex.ToString());
+                            conn.Close();
+                        }
+
+                    }
+
+                }
             }
         }
 
@@ -148,7 +203,7 @@ namespace Cryp2Cloud.Formularios
                     {
                         while (rd.Read())
                         {
-                           //Cargamos todos los datos de la BBDD
+                            //Cargamos todos los datos de la BBDD
                             Boolean drive = Convert.ToBoolean(rd["CheckDrive"]);
                             Boolean mega = Convert.ToBoolean(rd["CheckMega"]);
                             Boolean dropbox = Convert.ToBoolean(rd["CheckDropbox"]);
@@ -167,7 +222,7 @@ namespace Cryp2Cloud.Formularios
 
             }
         }
-        private void RellenarCampos(Boolean drive,Boolean mega,Boolean dropbox,String DirDrive,String DirMega,String DirDropbox,String DirDefault)
+        private void RellenarCampos(Boolean drive, Boolean mega, Boolean dropbox, String DirDrive, String DirMega, String DirDropbox, String DirDefault)
         {
             check_dropbox.Checked = dropbox;
             check_drive.Checked = drive;

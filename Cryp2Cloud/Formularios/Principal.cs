@@ -33,7 +33,7 @@ namespace Cryp2Cloud.Formularios
         public Principal()
         {
             InitializeComponent();
-            
+
         }
 
         private void Principal_Load(object sender, EventArgs e)
@@ -46,6 +46,7 @@ namespace Cryp2Cloud.Formularios
         {
             Formularios.Configuracion form = new Formularios.Configuracion();
             form._usuario = this._usuario;
+            form._principal = this;
             form.ShowDialog();
         }
 

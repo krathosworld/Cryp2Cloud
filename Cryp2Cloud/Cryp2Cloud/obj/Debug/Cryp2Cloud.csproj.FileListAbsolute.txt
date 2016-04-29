@@ -28,3 +28,17 @@ C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Fo
 C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Registro.resources
 C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Properties.Resources.resources
 C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.csproj.GenerateResource.Cache
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Cryp2Cloud.exe.config
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.exe
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.pdb
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Formularios\MiBaseDeDatos.mdf
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Formularios\MiBaseDeDatos_log.ldf
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Cryp2Cloud.exe
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\bin\Debug\Cryp2Cloud.pdb
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.csprojResolveAssemblyReference.cache
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Configuracion.resources
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.inicio.resources
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Principal.resources
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Formularios.Registro.resources
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.Properties.Resources.resources
+C:\Users\Hector\Source\Repos\Cryp2Cloud\Cryp2Cloud\Cryp2Cloud\obj\Debug\Cryp2Cloud.csproj.GenerateResource.Cache

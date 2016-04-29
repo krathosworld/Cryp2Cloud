@@ -16,6 +16,7 @@ namespace Cryp2Cloud.Formularios
         public String _usuario = null;
         public Formularios.Principal _principal = null; //Sirve para actualizar los datos en la ventana principal
 
+        Boolean PrimeraVez = false;
         BigCheckBox check_dropbox = new BigCheckBox(405, 232, "check_dropbox");
         BigCheckBox check_drive = new BigCheckBox(405, 314, "check_drive");
         BigCheckBox check_mega = new BigCheckBox(405, 400, "check_mega");
@@ -119,7 +120,7 @@ namespace Cryp2Cloud.Formularios
                             _principal._dirDrop = textBox_dropbox.Text;
                             _principal._dirMega = textBox_mega.Text;
                             _principal._dir_descarga = textBox_descargas.Text;
-
+                            PrimeraVez = false;
                             this.Close();
                         }
                         catch (Exception ex)
@@ -259,8 +260,21 @@ namespace Cryp2Cloud.Formularios
                 string downloadPath = raiz + "\\Downloads";
 
                 textBox_descargas.Text = downloadPath;
+
+                PrimeraVez = true;
             }
             else textBox_descargas.Text = DirDefault;
+
+        }
+
+        //Este manejador de evento se emplea cada vez que el formulario se va a cerrar
+        private void Configuracion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(PrimeraVez)
+            {
+                MessageBox.Show("Debe guardar los cambios al menos una vez");
+                e.Cancel = true;
+            }
 
         }
     }

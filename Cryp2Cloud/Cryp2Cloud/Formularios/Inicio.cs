@@ -70,7 +70,7 @@ namespace Cryp2Cloud
         {
             using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Formularios\MiBaseDeDatos.mdf;Integrated Security=True"))
             {
-                using (SqlCommand cmd = new SqlCommand("Select * From Usuario where id =  '" + textBox_usuario.Text.ToLower() + "' and contraseña = '" + textBox_contraseña.Text + "'", conn))
+                using (SqlCommand cmd = new SqlCommand("Select * From Usuario where id =  '" + textBox_usuario.Text.ToLower() + "'", conn))
                 {
                     conn.Open();
                     using (SqlDataReader rd = cmd.ExecuteReader())
@@ -81,12 +81,17 @@ namespace Cryp2Cloud
                             {
                                 String id = rd["Id"].ToString();
                                 String passwd = rd["Contraseña"].ToString();
-                                
-                                this.Hide();
-                                Formularios.Principal form = new Formularios.Principal();
-                                form._usuario = textBox_usuario.Text;
-                                form.ShowDialog();
-                                this.Close();
+                                String sal = rd["Sal"].ToString();
+                                string hash = Cifrado.GenerarSaltedHash(textBox_contraseña.Text, sal);
+
+                                if(hash.Equals(passwd))
+                                {
+                                    this.Hide();
+                                    Formularios.Principal form = new Formularios.Principal();
+                                    form._usuario = textBox_usuario.Text;
+                                    form.ShowDialog();
+                                    this.Close();
+                                }
                             }
                             rd.NextResult();
                         }

@@ -18,6 +18,8 @@ namespace Cryp2Cloud.Formularios
             InitializeComponent();
         }
 
+        //Al adarle a acceder primero comprueba que todos los datos hayan sido rellenados correctamente y luego comprueba con la base de datos
+        //En el caso de ser todo correcto cambiará a la ventana principal, en caso contrario monstrará un mensaje de error.
         private void btn_acceder_Click(object sender, EventArgs e)
         {
             if (comprobaciones())

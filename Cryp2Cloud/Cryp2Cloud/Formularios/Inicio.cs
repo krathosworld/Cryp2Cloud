@@ -13,16 +13,79 @@ namespace Cryp2Cloud
 {
     public partial class inicio : Form
     {
+        //Abre el formulario en el centro de la pantalla
         public inicio()
         {
-
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
 
+        //Al darle al botón de iniciar sesión comprueba si el usuario existe en la BD
+        //En el caso de existir pasa a la ventana principal, en caso contrario muestra un mensaje de alerta
+        private void btn_iniciar_sesion_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Formularios\MiBaseDeDatos.mdf;Integrated Security=True"))
+            {
+                using (SqlCommand cmd = new SqlCommand("Select * From Usuario where id =  '" + textBox_usuario.Text.ToLower() + "'", conn))
+                {
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader())
+                    {
+                        if(rd.HasRows)
+                        {
+                            while(rd.Read())
+                            {
+                                String id = rd["Id"].ToString();
+                                String passwd = rd["Contraseña"].ToString();
+                                String sal = rd["Sal"].ToString();
+                                string hash = Cifrado.GenerarSaltedHash(textBox_contraseña.Text, sal);
+
+                                if(hash.Equals(passwd))
+                                {
+                                    this.Hide();
+                                    Formularios.Principal form = new Formularios.Principal();
+                                    form._usuario = textBox_usuario.Text;
+                                    form.ShowDialog();
+                                    this.Close();
+                                }
+                            }
+                            rd.NextResult();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El nombre de usuario o la contraseña no son correctas");
+                            rd.Close();
+                        }
+                        
+                    }
+                    conn.Close();
+                }
+
+            }
+                
+        }
+
+        //Botón que accede al formulario de creación de cuenta
+        private void btn_crear_cuenta_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Formularios.Registro form = new Formularios.Registro();
+            form.Location = this.Location;
+            form.ShowDialog();
+            this.Close();
+        }
+
+
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+
+
+        //Manejadores de evento para animacione en formulario
         private void textBox_usuario_Enter(object sender, EventArgs e)
         {
-            if(textBox_usuario.Text=="Usuario:")
+            if (textBox_usuario.Text == "Usuario:")
             {
                 limpiar_casilla(sender);
             }
@@ -51,7 +114,7 @@ namespace Cryp2Cloud
 
         private void textBox_usuario_Leave(object sender, EventArgs e)
         {
-            if(textBox_usuario.Text=="")
+            if (textBox_usuario.Text == "")
             {
                 textBox_usuario.Text = "Usuario:";
             }
@@ -64,53 +127,6 @@ namespace Cryp2Cloud
                 textBox_contraseña.PasswordChar = '\0';
                 textBox_contraseña.Text = "Contraseña:";
             }
-        }
-
-        private void btn_iniciar_sesion_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Formularios\MiBaseDeDatos.mdf;Integrated Security=True"))
-            {
-                using (SqlCommand cmd = new SqlCommand("Select * From Usuario where id =  '" + textBox_usuario.Text.ToLower() + "' and contraseña = '" + textBox_contraseña.Text + "'", conn))
-                {
-                    conn.Open();
-                    using (SqlDataReader rd = cmd.ExecuteReader())
-                    {
-                        if(rd.HasRows)
-                        {
-                            while(rd.Read())
-                            {
-                                String id = rd["Id"].ToString();
-                                String passwd = rd["Contraseña"].ToString();
-                                
-                                this.Hide();
-                                Formularios.Principal form = new Formularios.Principal();
-                                form._usuario = textBox_usuario.Text;
-                                form.ShowDialog();
-                                this.Close();
-                            }
-                            rd.NextResult();
-                        }
-                        else
-                        {
-                            MessageBox.Show("El nombre de usuario o la contraseña no son correctas");
-                            rd.Close();
-                        }
-                        
-                    }
-                    conn.Close();
-                }
-
-            }
-                
-        }
-
-        private void btn_crear_cuenta_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Formularios.Registro form = new Formularios.Registro();
-            form.Location = this.Location;
-            form.ShowDialog();
-            this.Close();
         }
     }
 }

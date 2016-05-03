@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Permissions;
+using System.Security;
+using System.Diagnostics;
 
 namespace Cryp2Cloud.Formularios
 {
@@ -30,6 +33,9 @@ namespace Cryp2Cloud.Formularios
         //Listado con las rutas a los archivos a convertir
         List<String> rutas = new List<string>();
 
+        //Listado con las rutas disponibles para copiar archivos
+        List<String> rutasCifrado = new List<string>();
+
 
         public Principal()
         {
@@ -40,6 +46,7 @@ namespace Cryp2Cloud.Formularios
         private void Principal_Load(object sender, EventArgs e)
         {
             label_usuario.Text = _usuario.ToUpper();
+            CargarMétodos();
         }
 
         //Abre una ventana que permite seleccionar archivos para cargarlos en la ventana de principal
@@ -55,6 +62,96 @@ namespace Cryp2Cloud.Formularios
                 Direccion = @Explorador.FileName;
                 listaArchivos.Items.Add(Explorador.SafeFileName, 0); //Agrega el archivo a la lista de archivos en pantalla
                 rutas.Add(Direccion); //Almacenamos la dirección del archivo en una lista
+            }
+        }
+
+        //Botón que encripta los archivos seleccionados
+        private void btn_crypt_Click(object sender, EventArgs e)
+        {
+            //Comprueba el método de cifrado que se ha de emplear
+            //En caso de no haberse seleccionado ninguno mostrará un mensaje de aviso
+            String cifrado = "";
+            if((string)lista_cifrado.SelectedItem=="AES")
+            {
+                cifrado = ".aes";
+            }
+            else if ((string)lista_cifrado.SelectedItem == "RC4")
+            {
+                cifrado = ".rc4";
+            }
+            else
+            {
+                MessageBox.Show("Debe introducir un método de cifrado");
+                return;
+            }
+
+            foreach(String direccion in rutas)
+            {
+                String fileName = System.IO.Path.GetFileName(direccion) + cifrado;
+                foreach(String destino in rutasCifrado)
+                {
+                    String ficheroDestino = System.IO.Path.Combine(destino, fileName);
+                    System.IO.File.Copy(direccion, ficheroDestino, true);
+                }
+            }
+            listaArchivos.Clear();
+        }
+
+        //Desencripta los archivos seleccionados del panel de control derecho en la carpeta de descarga seleccionada
+        private void btn_decrypt_Click(object sender, EventArgs e)
+        {
+            GongSolutions.Shell.ShellItem[] elementos = Vista_carpeta.SelectedItems;
+            foreach(GongSolutions.Shell.ShellItem elemento in elementos)
+            {
+                String rutaElemento = elemento.FileSystemPath;
+                //Comprueba si la extensión del archivo es AES
+                switch(System.IO.Path.GetExtension(rutaElemento))
+                {
+                    case ".aes": //Caso de que sea aes
+
+                        break;
+                    case ".rc4": //Caso de que sea RC4
+
+                        break;
+                    default:
+                        return;
+                }
+      
+                String nombre = System.IO.Path.GetFileNameWithoutExtension(rutaElemento);
+                String ruta = System.IO.Path.GetDirectoryName(rutaElemento);
+                String ficheroDestino = System.IO.Path.Combine(_dir_descarga, nombre);
+
+                try
+                {
+                    //Copia el elemento en la ruta de descargas
+                    System.IO.File.Copy(rutaElemento, ficheroDestino, true);
+                    Process.Start("explorer.exe", _dir_descarga);
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    MessageBox.Show("No tiene permisos para guardar en este directorio");
+                }
+
+            }
+            
+        }
+
+        //Cargamos en una lista los directorios de los servicios que debemos de copiar
+        private void CargarMétodos()
+        {
+            //Limpiamos la lista de cifrado por si hubieran cambiado sus valores
+            rutasCifrado.Clear();
+            if(_checkDrive)
+            {
+                rutasCifrado.Add(_dirDrive);
+            }
+            if(_checkDrop)
+            {
+                rutasCifrado.Add(_dirDrop);
+            }
+            if(_checkMega)
+            {
+                rutasCifrado.Add(_dirMega);
             }
         }
 
@@ -127,9 +224,8 @@ namespace Cryp2Cloud.Formularios
         private void Principal_Activated(object sender, EventArgs e)
         {
             this.Refresh();
+            CargarMétodos();
         }
-
-        
 
         
     }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Drawing;
+<<<<<<< HEAD
+=======
 using System.IO;
+>>>>>>> refs/remotes/origin/Pedro
 using System.Windows.Forms;
 
 namespace Cryp2Cloud.Formularios
@@ -24,7 +27,14 @@ namespace Cryp2Cloud.Formularios
         BigCheckBox check_drive = new BigCheckBox(405, 314, "check_drive");
         BigCheckBox check_mega = new BigCheckBox(405, 400, "check_mega");
 
+<<<<<<< HEAD
+        BigCheckBox check_dropbox = new BigCheckBox(405, 232, "check_dropbox");
+        BigCheckBox check_drive = new BigCheckBox(405, 314, "check_drive");
+        BigCheckBox check_mega = new BigCheckBox(405, 400, "check_mega");
+
+=======
         //Añade los checkboxs personalizados a la pantalla e inicializa los componentes
+>>>>>>> refs/remotes/origin/Pedro
         public Configuracion()
         {
             this.Controls.Add(check_dropbox);
@@ -86,6 +96,12 @@ namespace Cryp2Cloud.Formularios
             {
                 MessageBox.Show("Debe seleccionar un servicio");
             }
+<<<<<<< HEAD
+            else
+            {
+                this.Hide();
+                this.Close();
+=======
             else if(!Directory.Exists(textBox_descargas.Text)) //Comprueba que la ruta especificada exista en el ordenador
             {
                 MessageBox.Show("La ruta de descargas no es válida, por favor introdúzcala de nuevo");
@@ -142,6 +158,7 @@ namespace Cryp2Cloud.Formularios
                     }
 
                 }
+>>>>>>> refs/remotes/origin/Pedro
             }
         }
 

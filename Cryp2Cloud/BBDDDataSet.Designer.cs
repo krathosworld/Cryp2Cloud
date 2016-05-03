@@ -297,6 +297,8 @@ namespace Cryp2Cloud {
             
             private global::System.Data.DataColumn columnCheckMega;
             
+            private global::System.Data.DataColumn columnSal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UsuarioDataTable() {
@@ -404,6 +406,14 @@ namespace Cryp2Cloud {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SalColumn {
+                get {
+                    return this.columnSal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +449,7 @@ namespace Cryp2Cloud {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UsuarioRow AddUsuarioRow(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, bool CheckDropbox, bool CheckDrive, bool CheckMega) {
+            public UsuarioRow AddUsuarioRow(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, bool CheckDropbox, bool CheckDrive, bool CheckMega, string Sal) {
                 UsuarioRow rowUsuarioRow = ((UsuarioRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -450,7 +460,8 @@ namespace Cryp2Cloud {
                         DirDefault,
                         CheckDropbox,
                         CheckDrive,
-                        CheckMega};
+                        CheckMega,
+                        Sal};
                 rowUsuarioRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUsuarioRow);
                 return rowUsuarioRow;
@@ -489,6 +500,7 @@ namespace Cryp2Cloud {
                 this.columnCheckDropbox = base.Columns["CheckDropbox"];
                 this.columnCheckDrive = base.Columns["CheckDrive"];
                 this.columnCheckMega = base.Columns["CheckMega"];
+                this.columnSal = base.Columns["Sal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -512,6 +524,8 @@ namespace Cryp2Cloud {
                 base.Columns.Add(this.columnCheckDrive);
                 this.columnCheckMega = new global::System.Data.DataColumn("CheckMega", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckMega);
+                this.columnSal = new global::System.Data.DataColumn("Sal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSal);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -523,9 +537,8 @@ namespace Cryp2Cloud {
                 this.columnDirDrive.MaxLength = 2147483647;
                 this.columnDirMega.MaxLength = 2147483647;
                 this.columnDirDefault.MaxLength = 2147483647;
-                this.columnCheckDropbox.AllowDBNull = false;
-                this.columnCheckDrive.AllowDBNull = false;
-                this.columnCheckMega.AllowDBNull = false;
+                this.columnSal.AllowDBNull = false;
+                this.columnSal.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -756,7 +769,12 @@ namespace Cryp2Cloud {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool CheckDropbox {
                 get {
-                    return ((bool)(this[this.tableUsuario.CheckDropboxColumn]));
+                    try {
+                        return ((bool)(this[this.tableUsuario.CheckDropboxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CheckDropbox\' de la tabla \'Usuario\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUsuario.CheckDropboxColumn] = value;
@@ -767,7 +785,12 @@ namespace Cryp2Cloud {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool CheckDrive {
                 get {
-                    return ((bool)(this[this.tableUsuario.CheckDriveColumn]));
+                    try {
+                        return ((bool)(this[this.tableUsuario.CheckDriveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CheckDrive\' de la tabla \'Usuario\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUsuario.CheckDriveColumn] = value;
@@ -778,10 +801,26 @@ namespace Cryp2Cloud {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool CheckMega {
                 get {
-                    return ((bool)(this[this.tableUsuario.CheckMegaColumn]));
+                    try {
+                        return ((bool)(this[this.tableUsuario.CheckMegaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CheckMega\' de la tabla \'Usuario\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUsuario.CheckMegaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Sal {
+                get {
+                    return ((string)(this[this.tableUsuario.SalColumn]));
+                }
+                set {
+                    this[this.tableUsuario.SalColumn] = value;
                 }
             }
             
@@ -831,6 +870,42 @@ namespace Cryp2Cloud {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDirDefaultNull() {
                 this[this.tableUsuario.DirDefaultColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCheckDropboxNull() {
+                return this.IsNull(this.tableUsuario.CheckDropboxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCheckDropboxNull() {
+                this[this.tableUsuario.CheckDropboxColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCheckDriveNull() {
+                return this.IsNull(this.tableUsuario.CheckDriveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCheckDriveNull() {
+                this[this.tableUsuario.CheckDriveColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCheckMegaNull() {
+                return this.IsNull(this.tableUsuario.CheckMegaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCheckMegaNull() {
+                this[this.tableUsuario.CheckMegaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1002,22 +1077,24 @@ namespace Cryp2Cloud.BBDDDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("CheckDropbox", "CheckDropbox");
             tableMapping.ColumnMappings.Add("CheckDrive", "CheckDrive");
             tableMapping.ColumnMappings.Add("CheckMega", "CheckMega");
+            tableMapping.ColumnMappings.Add("Sal", "Sal");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Usuario] WHERE (([Id] = @Original_Id) AND ([Contraseña] = @Ori" +
-                "ginal_Contraseña) AND ([CheckDropbox] = @Original_CheckDropbox) AND ([CheckDrive" +
-                "] = @Original_CheckDrive) AND ([CheckMega] = @Original_CheckMega))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Usuario] WHERE (([Id] = @Original_Id) AND ([Contraseña] = @Original_Contraseña) AND ((@IsNull_CheckDropbox = 1 AND [CheckDropbox] IS NULL) OR ([CheckDropbox] = @Original_CheckDropbox)) AND ((@IsNull_CheckDrive = 1 AND [CheckDrive] IS NULL) OR ([CheckDrive] = @Original_CheckDrive)) AND ((@IsNull_CheckMega = 1 AND [CheckMega] IS NULL) OR ([CheckMega] = @Original_CheckMega)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contraseña", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contraseña", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDropbox", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckDropbox", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDrive", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckDrive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckMega", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckMega", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckMega", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckMega", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Usuario] ([Id], [Contraseña], [DirDropbox], [DirDrive], [DirMega], [DirDefault], [CheckDropbox], [CheckDrive], [CheckMega]) VALUES (@Id, @Contraseña, @DirDropbox, @DirDrive, @DirMega, @DirDefault, @CheckDropbox, @CheckDrive, @CheckMega);
-SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega FROM Usuario WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Usuario] ([Id], [Contraseña], [DirDropbox], [DirDrive], [DirMega], [DirDefault], [CheckDropbox], [CheckDrive], [CheckMega], [Sal]) VALUES (@Id, @Contraseña, @DirDropbox, @DirDrive, @DirMega, @DirDefault, @CheckDropbox, @CheckDrive, @CheckMega, @Sal);
+SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega, Sal FROM Usuario WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Contraseña", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contraseña", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1028,10 +1105,11 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckDropbox", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckDrive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckMega", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckMega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sal", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Usuario] SET [Id] = @Id, [Contraseña] = @Contraseña, [DirDropbox] = @DirDropbox, [DirDrive] = @DirDrive, [DirMega] = @DirMega, [DirDefault] = @DirDefault, [CheckDropbox] = @CheckDropbox, [CheckDrive] = @CheckDrive, [CheckMega] = @CheckMega WHERE (([Id] = @Original_Id) AND ([Contraseña] = @Original_Contraseña) AND ([CheckDropbox] = @Original_CheckDropbox) AND ([CheckDrive] = @Original_CheckDrive) AND ([CheckMega] = @Original_CheckMega));
-SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega FROM Usuario WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Usuario] SET [Id] = @Id, [Contraseña] = @Contraseña, [DirDropbox] = @DirDropbox, [DirDrive] = @DirDrive, [DirMega] = @DirMega, [DirDefault] = @DirDefault, [CheckDropbox] = @CheckDropbox, [CheckDrive] = @CheckDrive, [CheckMega] = @CheckMega, [Sal] = @Sal WHERE (([Id] = @Original_Id) AND ([Contraseña] = @Original_Contraseña) AND ((@IsNull_CheckDropbox = 1 AND [CheckDropbox] IS NULL) OR ([CheckDropbox] = @Original_CheckDropbox)) AND ((@IsNull_CheckDrive = 1 AND [CheckDrive] IS NULL) OR ([CheckDrive] = @Original_CheckDrive)) AND ((@IsNull_CheckMega = 1 AND [CheckMega] IS NULL) OR ([CheckMega] = @Original_CheckMega)));
+SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega, Sal FROM Usuario WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Contraseña", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contraseña", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1042,10 +1120,14 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckDropbox", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckDrive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckMega", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckMega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sal", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contraseña", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contraseña", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDropbox", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckDropbox", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDrive", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckDrive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckMega", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckMega", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckMega", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckMega", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -1063,7 +1145,7 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, C" +
-                "heckDrive, CheckMega FROM dbo.Usuario";
+                "heckDrive, CheckMega, Sal FROM dbo.Usuario";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1124,7 +1206,7 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id, string Original_Contraseña, bool Original_CheckDropbox, bool Original_CheckDrive, bool Original_CheckMega) {
+        public virtual int Delete(string Original_Id, string Original_Contraseña, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
@@ -1137,9 +1219,30 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Contraseña));
             }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(Original_CheckDropbox));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_CheckDrive));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_CheckMega));
+            if ((Original_CheckDropbox.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_CheckDropbox.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Original_CheckDrive.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_CheckDrive.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_CheckMega.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_CheckMega.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1160,7 +1263,7 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, bool CheckDropbox, bool CheckDrive, bool CheckMega) {
+        public virtual int Insert(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, global::System.Nullable<bool> CheckDropbox, global::System.Nullable<bool> CheckDrive, global::System.Nullable<bool> CheckMega, string Sal) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -1197,9 +1300,30 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(DirDefault));
             }
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(CheckDropbox));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(CheckDrive));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((bool)(CheckMega));
+            if ((CheckDropbox.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(CheckDropbox.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((CheckDrive.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(CheckDrive.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((CheckMega.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((bool)(CheckMega.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Sal == null)) {
+                throw new global::System.ArgumentNullException("Sal");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Sal));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1220,7 +1344,7 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, bool CheckDropbox, bool CheckDrive, bool CheckMega, string Original_Id, string Original_Contraseña, bool Original_CheckDropbox, bool Original_CheckDrive, bool Original_CheckMega) {
+        public virtual int Update(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, global::System.Nullable<bool> CheckDropbox, global::System.Nullable<bool> CheckDrive, global::System.Nullable<bool> CheckMega, string Sal, string Original_Id, string Original_Contraseña, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -1257,24 +1381,66 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(DirDefault));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(CheckDropbox));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(CheckDrive));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(CheckMega));
+            if ((CheckDropbox.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(CheckDropbox.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((CheckDrive.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(CheckDrive.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((CheckMega.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(CheckMega.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Sal == null)) {
+                throw new global::System.ArgumentNullException("Sal");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Sal));
+            }
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Id));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Id));
             }
             if ((Original_Contraseña == null)) {
                 throw new global::System.ArgumentNullException("Original_Contraseña");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Contraseña));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Contraseña));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_CheckDropbox));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_CheckDrive));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_CheckMega));
+            if ((Original_CheckDropbox.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_CheckDropbox.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((Original_CheckDrive.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Original_CheckDrive.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((Original_CheckMega.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_CheckMega.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1295,8 +1461,8 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, bool CheckDropbox, bool CheckDrive, bool CheckMega, string Original_Id, string Original_Contraseña, bool Original_CheckDropbox, bool Original_CheckDrive, bool Original_CheckMega) {
-            return this.Update(Original_Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega, Original_Id, Original_Contraseña, Original_CheckDropbox, Original_CheckDrive, Original_CheckMega);
+        public virtual int Update(string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, global::System.Nullable<bool> CheckDropbox, global::System.Nullable<bool> CheckDrive, global::System.Nullable<bool> CheckMega, string Sal, string Original_Id, string Original_Contraseña, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
+            return this.Update(Original_Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega, Sal, Original_Id, Original_Contraseña, Original_CheckDropbox, Original_CheckDrive, Original_CheckMega);
         }
     }
     

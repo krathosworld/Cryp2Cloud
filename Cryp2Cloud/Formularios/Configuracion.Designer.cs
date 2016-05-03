@@ -204,6 +204,7 @@
             this.Name = "Configuracion";
             this.Opacity = 0.98D;
             this.Text = "Configuracion";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Configuracion_FormClosing);
             this.Load += new System.EventHandler(this.Configuracion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

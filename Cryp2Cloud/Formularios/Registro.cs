@@ -18,6 +18,8 @@ namespace Cryp2Cloud.Formularios
             InitializeComponent();
         }
 
+        //Al adarle a acceder primero comprueba que todos los datos hayan sido rellenados correctamente y luego comprueba con la base de datos
+        //En el caso de ser todo correcto cambiará a la ventana principal, en caso contrario monstrará un mensaje de error.
         private void btn_acceder_Click(object sender, EventArgs e)
         {
             if (comprobaciones())
@@ -91,9 +93,11 @@ namespace Cryp2Cloud.Formularios
                             usuarioTableAdapter = new BBDDDataSetTableAdapters.UsuarioTableAdapter();
                             String usuario = textBox_usuario.Text.ToLower();
                             String contraseña = textBox_contraseña.Text;
+                            String sal = Cifrado.GenerarCadenaAleatoria(32);
+                            String hash = Cifrado.GenerarSaltedHash(contraseña, sal);
 
                             //Insertamos el nuevo usuario en la base de datos
-                            usuarioTableAdapter.Insert(usuario, contraseña, null, null, null, null, false, false, false);
+                            usuarioTableAdapter.Insert(usuario, hash, null, null, null, null, false, false, false,sal);
 
                             this.Hide();
                             Formularios.Principal form = new Formularios.Principal();

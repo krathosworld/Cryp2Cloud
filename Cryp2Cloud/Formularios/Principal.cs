@@ -49,22 +49,6 @@ namespace Cryp2Cloud.Formularios
             CargarMétodos();
         }
 
-        //Abre una ventana que permite seleccionar archivos para cargarlos en la ventana de principal
-        private void btn_añadir_archivo_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog Explorador = new OpenFileDialog();
-            Explorador.InitialDirectory = "c:\'";
-
-            string Direccion = null;
-
-            if (Explorador.ShowDialog() == DialogResult.OK)
-            {
-                Direccion = @Explorador.FileName;
-                listaArchivos.Items.Add(Explorador.SafeFileName, 0); //Agrega el archivo a la lista de archivos en pantalla
-                rutas.Add(Direccion); //Almacenamos la dirección del archivo en una lista
-            }
-        }
-
         //Botón que encripta los archivos seleccionados
         private void btn_crypt_Click(object sender, EventArgs e)
         {

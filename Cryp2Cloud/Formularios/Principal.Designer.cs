@@ -107,11 +107,12 @@
             this.btn_crypt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_crypt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_crypt.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_crypt.Location = new System.Drawing.Point(449, 216);
+            this.btn_crypt.Location = new System.Drawing.Point(451, 305);
             this.btn_crypt.Name = "btn_crypt";
             this.btn_crypt.Size = new System.Drawing.Size(95, 95);
             this.btn_crypt.TabIndex = 3;
             this.btn_crypt.UseVisualStyleBackColor = false;
+            this.btn_crypt.Click += new System.EventHandler(this.btn_crypt_Click);
             this.btn_crypt.MouseEnter += new System.EventHandler(this.btn_crypt_MouseEnter);
             this.btn_crypt.MouseLeave += new System.EventHandler(this.btn_crypt_MouseLeave);
             // 
@@ -138,11 +139,12 @@
             this.btn_decrypt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_decrypt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_decrypt.ForeColor = System.Drawing.Color.Transparent;
-            this.btn_decrypt.Location = new System.Drawing.Point(449, 329);
+            this.btn_decrypt.Location = new System.Drawing.Point(832, 554);
             this.btn_decrypt.Name = "btn_decrypt";
             this.btn_decrypt.Size = new System.Drawing.Size(95, 95);
             this.btn_decrypt.TabIndex = 5;
             this.btn_decrypt.UseVisualStyleBackColor = false;
+            this.btn_decrypt.Click += new System.EventHandler(this.btn_decrypt_Click);
             this.btn_decrypt.MouseEnter += new System.EventHandler(this.btn_decrypt_MouseEnter);
             this.btn_decrypt.MouseLeave += new System.EventHandler(this.btn_decrypt_MouseLeave);
             // 

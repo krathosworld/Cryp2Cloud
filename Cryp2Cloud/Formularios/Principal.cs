@@ -155,6 +155,22 @@ namespace Cryp2Cloud.Formularios
             }
         }
 
+        //Abre una ventana que permite seleccionar archivos para cargarlos en la ventana de principal
+        private void btn_añadir_archivo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Explorador = new OpenFileDialog();
+            Explorador.InitialDirectory = "c:\'";
+
+            string Direccion = null;
+
+            if (Explorador.ShowDialog() == DialogResult.OK)
+            {
+                Direccion = @Explorador.FileName;
+                listaArchivos.Items.Add(Explorador.SafeFileName, 0); //Agrega el archivo a la lista de archivos en pantalla
+                rutas.Add(Direccion); //Almacenamos la dirección del archivo en una lista
+            }
+        }
+
         //MANEJADORES DE EVENTOS
 
         private void listaArchivos_DragEnter(object sender, DragEventArgs e)
@@ -226,7 +242,5 @@ namespace Cryp2Cloud.Formularios
             this.Refresh();
             CargarMétodos();
         }
-
-        
     }
 }

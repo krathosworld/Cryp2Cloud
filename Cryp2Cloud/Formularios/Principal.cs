@@ -49,7 +49,7 @@ namespace Cryp2Cloud.Formularios
             CargarMétodos();
         }
 
-        //Botón que encripta los archivos seleccionados
+        //Botón que cifra los archivos seleccionados
         private void btn_crypt_Click(object sender, EventArgs e)
         {
             //Comprueba el método de cifrado que se ha de emplear

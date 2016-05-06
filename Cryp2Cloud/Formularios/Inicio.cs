@@ -45,6 +45,7 @@ namespace Cryp2Cloud
                                     this.Hide();
                                     Formularios.Principal form = new Formularios.Principal();
                                     form._usuario = textBox_usuario.Text;
+                                    form._password = passwd;
                                     form.ShowDialog();
                                     this.Close();
                                 }

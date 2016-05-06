@@ -106,6 +106,7 @@ namespace Cryp2Cloud.Formularios
                             //Cargamos el usuario en el resto de formularios
                             form._usuario = usuario;
                             form2._usuario = usuario;
+                            form._password = hash;
                             form2._principal = form;
 
                             form2.ShowDialog();

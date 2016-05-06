@@ -67,9 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BBDDDataSet.cs">
-      <DependentUpon>BBDDDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="BBDDDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

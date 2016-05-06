@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Security.Permissions;
 using System.Security;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace Cryp2Cloud.Formularios
 {
@@ -18,6 +19,7 @@ namespace Cryp2Cloud.Formularios
     {
         //Nombre de usuario para mantener sesión
         public string _usuario = null;
+        public string _password = null;
 
         //Rutas de los campos a copiar
         public string _dirDrop = null;
@@ -69,16 +71,63 @@ namespace Cryp2Cloud.Formularios
                 return;
             }
 
-            foreach(String direccion in rutas)
+            String error = "";
+            foreach (String direccion in rutas)
             {
                 String fileName = System.IO.Path.GetFileName(direccion) + cifrado;
-                foreach(String destino in rutasCifrado)
+                //Comprobar si el archivo ya existe en la BD
+                if (buscarArchivoBD(fileName)!="")
                 {
-                    String ficheroDestino = System.IO.Path.Combine(destino, fileName);
-                    System.IO.File.Copy(direccion, ficheroDestino, true);
+                    error += "El archivo " + fileName + " ya ha sido cifrado\n";
+                }
+                else
+                {
+                    if (cifrado == ".aes")
+                    {
+                        //Generamos las claves necesarias para el cifrado en AES
+                        String ContAleatoria = Cifrado.GenerarCadenaAleatoria(16);
+                        Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 16);
+                        String PassArchivo = Cifrado.GenerarPassAES(ContAleatoria, PassMaestra);
+                        //Se llama a la función que cifra por AES
+                        if (Cifrado.CifrarAES(direccion, ContAleatoria))
+                        {
+                            InsertarArchivoBD(fileName,PassArchivo);
+                            CopiaArchivo(direccion+cifrado,fileName);
+                        }
+                    }
+                    else
+                    {
+                        //Se llama a la función que cifra por RC4
+
+                    }
+
                 }
             }
+            if(error!="")
+            {
+                MessageBox.Show(error);
+            }
             listaArchivos.Clear();
+            rutas.Clear();
+        }
+
+        private void InsertarArchivoBD(String nombre, String passArchivo)
+        {
+            //Inicializamos el DataSet que conecta con la tabla usuarios
+            BBDDDataSetTableAdapters.ArchivoCifradoTableAdapter archivoTableAdapter;
+            archivoTableAdapter = new BBDDDataSetTableAdapters.ArchivoCifradoTableAdapter();
+            //Insertamos el nuevo usuario en la base de datos
+            archivoTableAdapter.Insert(nombre, passArchivo, _usuario);
+        }
+
+        private void CopiaArchivo(String rutaArchivo,String fileName)
+        {
+            foreach (String destino in rutasCifrado) //Bucle que itera en cada una de las rutas a copiar el archivo
+            {
+                String ficheroDestino = System.IO.Path.Combine(destino, fileName); //Crea la ruta completa del archivo a crear
+                System.IO.File.Copy(rutaArchivo, ficheroDestino, true); //Copia el archivo de respaldo en cada una de las rutas especificadas
+            }
+            System.IO.File.Delete(rutaArchivo); //Elimina el archivo de respaldo
         }
 
         //Desencripta los archivos seleccionados del panel de control derecho en la carpeta de descarga seleccionada
@@ -88,32 +137,44 @@ namespace Cryp2Cloud.Formularios
             foreach(GongSolutions.Shell.ShellItem elemento in elementos)
             {
                 String rutaElemento = elemento.FileSystemPath;
-                //Comprueba si la extensión del archivo es AES
-                switch(System.IO.Path.GetExtension(rutaElemento))
-                {
-                    case ".aes": //Caso de que sea aes
-
-                        break;
-                    case ".rc4": //Caso de que sea RC4
-
-                        break;
-                    default:
-                        return;
-                }
-      
+                String nombreElemento = System.IO.Path.GetFileName(rutaElemento);
+                String PassBD = buscarArchivoBD(nombreElemento);
                 String nombre = System.IO.Path.GetFileNameWithoutExtension(rutaElemento);
                 String ruta = System.IO.Path.GetDirectoryName(rutaElemento);
                 String ficheroDestino = System.IO.Path.Combine(_dir_descarga, nombre);
+                if (PassBD == "")
+                {
 
-                try
-                {
-                    //Copia el elemento en la ruta de descargas
-                    System.IO.File.Copy(rutaElemento, ficheroDestino, true);
-                    Process.Start("explorer.exe", _dir_descarga);
                 }
-                catch (UnauthorizedAccessException ex)
+                else
                 {
-                    MessageBox.Show("No tiene permisos para guardar en este directorio");
+                    //Comprueba si la extensión del archivo es AES o RC4
+                    switch (System.IO.Path.GetExtension(rutaElemento))
+                    {
+                        case ".aes": //Caso de que sea aes
+                            Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 16);
+                            String PassArchivo = Cifrado.DescifrarPassAES(PassBD, PassMaestra);
+                            Byte[] ContAleatoria = Cifrado.GenerarClaveByte(PassArchivo, 16);
+                            Cifrado.DescifrarAES(rutaElemento, ficheroDestino, ContAleatoria);
+                            break;
+
+                        case ".rc4": //Caso de que sea RC4
+
+                            break;
+                        default:
+                            return;
+                    }
+
+                    try
+                    {
+                        //Copia el elemento en la ruta de descargas
+                        System.IO.File.Copy(rutaElemento, ficheroDestino, true);
+                        Process.Start("explorer.exe", _dir_descarga);
+                    }
+                    catch (UnauthorizedAccessException ex)
+                    {
+                        MessageBox.Show("No tiene permisos para guardar en este directorio");
+                    }
                 }
 
             }
@@ -153,6 +214,32 @@ namespace Cryp2Cloud.Formularios
                 listaArchivos.Items.Add(Explorador.SafeFileName, 0); //Agrega el archivo a la lista de archivos en pantalla
                 rutas.Add(Direccion); //Almacenamos la dirección del archivo en una lista
             }
+        }
+
+        private String buscarArchivoBD(String nombreArchivo)
+        {
+            using (SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Formularios\MiBaseDeDatos.mdf;Integrated Security=True"))
+            {
+                using (SqlCommand cmd = new SqlCommand("Select * From ArchivoCifrado where Nombre =  '" + nombreArchivo + "' AND Usuario = '"+_usuario+"'", conn))
+                {
+                    conn.Open();
+                    using (SqlDataReader rd = cmd.ExecuteReader())
+                    {
+                        if (rd.HasRows)
+                        {
+                            if (rd.Read())
+                            {
+                                //Cargamos todos los datos de la BD
+                                String PassArchivo = rd["PassCifrado"].ToString();
+                                conn.Close();
+                                return PassArchivo;
+                            }
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return "";
         }
 
         //MANEJADORES DE EVENTOS

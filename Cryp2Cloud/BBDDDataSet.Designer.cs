@@ -24,7 +24,11 @@ namespace Cryp2Cloud {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class BBDDDataSet : global::System.Data.DataSet {
         
+        private ArchivoCifradoDataTable tableArchivoCifrado;
+        
         private UsuarioDataTable tableUsuario;
+        
+        private global::System.Data.DataRelation relationfkUsuario;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,6 +58,9 @@ namespace Cryp2Cloud {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
+                if ((ds.Tables["ArchivoCifrado"] != null)) {
+                    base.Tables.Add(new ArchivoCifradoDataTable(ds.Tables["ArchivoCifrado"]));
+                }
                 if ((ds.Tables["Usuario"] != null)) {
                     base.Tables.Add(new UsuarioDataTable(ds.Tables["Usuario"]));
                 }
@@ -73,6 +80,16 @@ namespace Cryp2Cloud {
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ArchivoCifradoDataTable ArchivoCifrado {
+            get {
+                return this.tableArchivoCifrado;
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -152,6 +169,9 @@ namespace Cryp2Cloud {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
+                if ((ds.Tables["ArchivoCifrado"] != null)) {
+                    base.Tables.Add(new ArchivoCifradoDataTable(ds.Tables["ArchivoCifrado"]));
+                }
                 if ((ds.Tables["Usuario"] != null)) {
                     base.Tables.Add(new UsuarioDataTable(ds.Tables["Usuario"]));
                 }
@@ -188,12 +208,19 @@ namespace Cryp2Cloud {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
+            this.tableArchivoCifrado = ((ArchivoCifradoDataTable)(base.Tables["ArchivoCifrado"]));
+            if ((initTable == true)) {
+                if ((this.tableArchivoCifrado != null)) {
+                    this.tableArchivoCifrado.InitVars();
+                }
+            }
             this.tableUsuario = ((UsuarioDataTable)(base.Tables["Usuario"]));
             if ((initTable == true)) {
                 if ((this.tableUsuario != null)) {
                     this.tableUsuario.InitVars();
                 }
             }
+            this.relationfkUsuario = this.Relations["fkUsuario"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -204,8 +231,20 @@ namespace Cryp2Cloud {
             this.Namespace = "http://tempuri.org/BBDDDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tableArchivoCifrado = new ArchivoCifradoDataTable();
+            base.Tables.Add(this.tableArchivoCifrado);
             this.tableUsuario = new UsuarioDataTable();
             base.Tables.Add(this.tableUsuario);
+            this.relationfkUsuario = new global::System.Data.DataRelation("fkUsuario", new global::System.Data.DataColumn[] {
+                        this.tableUsuario.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableArchivoCifrado.UsuarioColumn}, false);
+            this.Relations.Add(this.relationfkUsuario);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeArchivoCifrado() {
+            return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -270,7 +309,304 @@ namespace Cryp2Cloud {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void ArchivoCifradoRowChangeEventHandler(object sender, ArchivoCifradoRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void UsuarioRowChangeEventHandler(object sender, UsuarioRowChangeEvent e);
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ArchivoCifradoDataTable : global::System.Data.TypedTableBase<ArchivoCifradoRow> {
+            
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnPassCifrado;
+            
+            private global::System.Data.DataColumn columnUsuario;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoDataTable() {
+                this.TableName = "ArchivoCifrado";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal ArchivoCifradoDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected ArchivoCifradoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PassCifradoColumn {
+                get {
+                    return this.columnPassCifrado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioColumn {
+                get {
+                    return this.columnUsuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoRow this[int index] {
+                get {
+                    return ((ArchivoCifradoRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ArchivoCifradoRowChangeEventHandler ArchivoCifradoRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ArchivoCifradoRowChangeEventHandler ArchivoCifradoRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ArchivoCifradoRowChangeEventHandler ArchivoCifradoRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ArchivoCifradoRowChangeEventHandler ArchivoCifradoRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddArchivoCifradoRow(ArchivoCifradoRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoRow AddArchivoCifradoRow(string Nombre, string PassCifrado, UsuarioRow parentUsuarioRowByfkUsuario) {
+                ArchivoCifradoRow rowArchivoCifradoRow = ((ArchivoCifradoRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Nombre,
+                        PassCifrado,
+                        null};
+                if ((parentUsuarioRowByfkUsuario != null)) {
+                    columnValuesArray[2] = parentUsuarioRowByfkUsuario[0];
+                }
+                rowArchivoCifradoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowArchivoCifradoRow);
+                return rowArchivoCifradoRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoRow FindByNombreUsuario(string Nombre, string Usuario) {
+                return ((ArchivoCifradoRow)(this.Rows.Find(new object[] {
+                            Nombre,
+                            Usuario})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                ArchivoCifradoDataTable cln = ((ArchivoCifradoDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ArchivoCifradoDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnPassCifrado = base.Columns["PassCifrado"];
+                this.columnUsuario = base.Columns["Usuario"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnPassCifrado = new global::System.Data.DataColumn("PassCifrado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassCifrado);
+                this.columnUsuario = new global::System.Data.DataColumn("Usuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuario);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnNombre,
+                                this.columnUsuario}, true));
+                this.columnNombre.AllowDBNull = false;
+                this.columnNombre.MaxLength = 50;
+                this.columnPassCifrado.MaxLength = 2147483647;
+                this.columnUsuario.AllowDBNull = false;
+                this.columnUsuario.MaxLength = 16;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoRow NewArchivoCifradoRow() {
+                return ((ArchivoCifradoRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ArchivoCifradoRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(ArchivoCifradoRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ArchivoCifradoRowChanged != null)) {
+                    this.ArchivoCifradoRowChanged(this, new ArchivoCifradoRowChangeEvent(((ArchivoCifradoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ArchivoCifradoRowChanging != null)) {
+                    this.ArchivoCifradoRowChanging(this, new ArchivoCifradoRowChangeEvent(((ArchivoCifradoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ArchivoCifradoRowDeleted != null)) {
+                    this.ArchivoCifradoRowDeleted(this, new ArchivoCifradoRowChangeEvent(((ArchivoCifradoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ArchivoCifradoRowDeleting != null)) {
+                    this.ArchivoCifradoRowDeleting(this, new ArchivoCifradoRowChangeEvent(((ArchivoCifradoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveArchivoCifradoRow(ArchivoCifradoRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                BBDDDataSet ds = new BBDDDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ArchivoCifradoDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -532,7 +868,7 @@ namespace Cryp2Cloud {
                 this.columnId.Unique = true;
                 this.columnId.MaxLength = 16;
                 this.columnContraseña.AllowDBNull = false;
-                this.columnContraseña.MaxLength = 16;
+                this.columnContraseña.MaxLength = 2147483647;
                 this.columnDirDropbox.MaxLength = 2147483647;
                 this.columnDirDrive.MaxLength = 2147483647;
                 this.columnDirMega.MaxLength = 2147483647;
@@ -662,6 +998,82 @@ namespace Cryp2Cloud {
                 }
                 xs.Add(dsSchema);
                 return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class ArchivoCifradoRow : global::System.Data.DataRow {
+            
+            private ArchivoCifradoDataTable tableArchivoCifrado;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal ArchivoCifradoRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableArchivoCifrado = ((ArchivoCifradoDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    return ((string)(this[this.tableArchivoCifrado.NombreColumn]));
+                }
+                set {
+                    this[this.tableArchivoCifrado.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PassCifrado {
+                get {
+                    try {
+                        return ((string)(this[this.tableArchivoCifrado.PassCifradoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PassCifrado\' de la tabla \'ArchivoCifrado\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableArchivoCifrado.PassCifradoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Usuario {
+                get {
+                    return ((string)(this[this.tableArchivoCifrado.UsuarioColumn]));
+                }
+                set {
+                    this[this.tableArchivoCifrado.UsuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UsuarioRow UsuarioRow {
+                get {
+                    return ((UsuarioRow)(this.GetParentRow(this.Table.ParentRelations["fkUsuario"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["fkUsuario"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPassCifradoNull() {
+                return this.IsNull(this.tableArchivoCifrado.PassCifradoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPassCifradoNull() {
+                this[this.tableArchivoCifrado.PassCifradoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -907,6 +1319,51 @@ namespace Cryp2Cloud {
             public void SetCheckMegaNull() {
                 this[this.tableUsuario.CheckMegaColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoRow[] GetArchivoCifradoRows() {
+                if ((this.Table.ChildRelations["fkUsuario"] == null)) {
+                    return new ArchivoCifradoRow[0];
+                }
+                else {
+                    return ((ArchivoCifradoRow[])(base.GetChildRows(this.Table.ChildRelations["fkUsuario"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class ArchivoCifradoRowChangeEvent : global::System.EventArgs {
+            
+            private ArchivoCifradoRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoRowChangeEvent(ArchivoCifradoRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ArchivoCifradoRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
         }
         
         /// <summary>
@@ -946,6 +1403,361 @@ namespace Cryp2Cloud {
 }
 namespace Cryp2Cloud.BBDDDataSetTableAdapters {
     
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class ArchivoCifradoTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public ArchivoCifradoTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "ArchivoCifrado";
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("PassCifrado", "PassCifrado");
+            tableMapping.ColumnMappings.Add("Usuario", "Usuario");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[ArchivoCifrado] WHERE (([Nombre] = @Original_Nombre) AND ([Usu" +
+                "ario] = @Original_Usuario))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nombre", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usuario", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[ArchivoCifrado] ([Nombre], [PassCifrado], [Usuario]) VALUES (@" +
+                "Nombre, @PassCifrado, @Usuario);\r\nSELECT Nombre, PassCifrado, Usuario FROM Archi" +
+                "voCifrado WHERE (Nombre = @Nombre) AND (Usuario = @Usuario)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PassCifrado", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PassCifrado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ArchivoCifrado] SET [Nombre] = @Nombre, [PassCifrado] = @PassCifrado, [Usuario] = @Usuario WHERE (([Nombre] = @Original_Nombre) AND ([Usuario] = @Original_Usuario));
+SELECT Nombre, PassCifrado, Usuario FROM ArchivoCifrado WHERE (Nombre = @Nombre) AND (Usuario = @Usuario)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PassCifrado", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PassCifrado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nombre", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Usuario", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Usuario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Cryp2Cloud.Properties.Settings.Default.BBDDConexion;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT Nombre, PassCifrado, Usuario FROM dbo.ArchivoCifrado";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(BBDDDataSet.ArchivoCifradoDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual BBDDDataSet.ArchivoCifradoDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            BBDDDataSet.ArchivoCifradoDataTable dataTable = new BBDDDataSet.ArchivoCifradoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BBDDDataSet.ArchivoCifradoDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(BBDDDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "ArchivoCifrado");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(string Original_Nombre, string Original_Usuario) {
+            if ((Original_Nombre == null)) {
+                throw new global::System.ArgumentNullException("Original_Nombre");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Nombre));
+            }
+            if ((Original_Usuario == null)) {
+                throw new global::System.ArgumentNullException("Original_Usuario");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Usuario));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string Nombre, string PassCifrado, string Usuario) {
+            if ((Nombre == null)) {
+                throw new global::System.ArgumentNullException("Nombre");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Nombre));
+            }
+            if ((PassCifrado == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(PassCifrado));
+            }
+            if ((Usuario == null)) {
+                throw new global::System.ArgumentNullException("Usuario");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Usuario));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string Nombre, string PassCifrado, string Usuario, string Original_Nombre, string Original_Usuario) {
+            if ((Nombre == null)) {
+                throw new global::System.ArgumentNullException("Nombre");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Nombre));
+            }
+            if ((PassCifrado == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(PassCifrado));
+            }
+            if ((Usuario == null)) {
+                throw new global::System.ArgumentNullException("Usuario");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Usuario));
+            }
+            if ((Original_Nombre == null)) {
+                throw new global::System.ArgumentNullException("Original_Nombre");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Nombre));
+            }
+            if ((Original_Usuario == null)) {
+                throw new global::System.ArgumentNullException("Original_Usuario");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Usuario));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string PassCifrado, string Original_Nombre, string Original_Usuario) {
+            return this.Update(Original_Nombre, PassCifrado, Original_Usuario, Original_Nombre, Original_Usuario);
+        }
+    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -1081,10 +1893,9 @@ namespace Cryp2Cloud.BBDDDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Usuario] WHERE (([Id] = @Original_Id) AND ([Contraseña] = @Original_Contraseña) AND ((@IsNull_CheckDropbox = 1 AND [CheckDropbox] IS NULL) OR ([CheckDropbox] = @Original_CheckDropbox)) AND ((@IsNull_CheckDrive = 1 AND [CheckDrive] IS NULL) OR ([CheckDrive] = @Original_CheckDrive)) AND ((@IsNull_CheckMega = 1 AND [CheckMega] IS NULL) OR ([CheckMega] = @Original_CheckMega)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Usuario] WHERE (([Id] = @Original_Id) AND ((@IsNull_CheckDropbox = 1 AND [CheckDropbox] IS NULL) OR ([CheckDropbox] = @Original_CheckDropbox)) AND ((@IsNull_CheckDrive = 1 AND [CheckDrive] IS NULL) OR ([CheckDrive] = @Original_CheckDrive)) AND ((@IsNull_CheckMega = 1 AND [CheckMega] IS NULL) OR ([CheckMega] = @Original_CheckMega)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contraseña", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contraseña", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDropbox", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckDropbox", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDrive", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -1108,7 +1919,7 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sal", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Usuario] SET [Id] = @Id, [Contraseña] = @Contraseña, [DirDropbox] = @DirDropbox, [DirDrive] = @DirDrive, [DirMega] = @DirMega, [DirDefault] = @DirDefault, [CheckDropbox] = @CheckDropbox, [CheckDrive] = @CheckDrive, [CheckMega] = @CheckMega, [Sal] = @Sal WHERE (([Id] = @Original_Id) AND ([Contraseña] = @Original_Contraseña) AND ((@IsNull_CheckDropbox = 1 AND [CheckDropbox] IS NULL) OR ([CheckDropbox] = @Original_CheckDropbox)) AND ((@IsNull_CheckDrive = 1 AND [CheckDrive] IS NULL) OR ([CheckDrive] = @Original_CheckDrive)) AND ((@IsNull_CheckMega = 1 AND [CheckMega] IS NULL) OR ([CheckMega] = @Original_CheckMega)));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Usuario] SET [Id] = @Id, [Contraseña] = @Contraseña, [DirDropbox] = @DirDropbox, [DirDrive] = @DirDrive, [DirMega] = @DirMega, [DirDefault] = @DirDefault, [CheckDropbox] = @CheckDropbox, [CheckDrive] = @CheckDrive, [CheckMega] = @CheckMega, [Sal] = @Sal WHERE (([Id] = @Original_Id) AND ((@IsNull_CheckDropbox = 1 AND [CheckDropbox] IS NULL) OR ([CheckDropbox] = @Original_CheckDropbox)) AND ((@IsNull_CheckDrive = 1 AND [CheckDrive] IS NULL) OR ([CheckDrive] = @Original_CheckDrive)) AND ((@IsNull_CheckMega = 1 AND [CheckMega] IS NULL) OR ([CheckMega] = @Original_CheckMega)));
 SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega, Sal FROM Usuario WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1122,7 +1933,6 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckMega", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckMega", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sal", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Contraseña", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contraseña", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDropbox", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckDropbox", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDropbox", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CheckDrive", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckDrive", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -1206,42 +2016,36 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id, string Original_Contraseña, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
+        public virtual int Delete(string Original_Id, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Id));
             }
-            if ((Original_Contraseña == null)) {
-                throw new global::System.ArgumentNullException("Original_Contraseña");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Contraseña));
-            }
             if ((Original_CheckDropbox.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_CheckDropbox.Value));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(Original_CheckDropbox.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((Original_CheckDrive.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_CheckDrive.Value));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_CheckDrive.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             if ((Original_CheckMega.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_CheckMega.Value));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_CheckMega.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1344,7 +2148,7 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, global::System.Nullable<bool> CheckDropbox, global::System.Nullable<bool> CheckDrive, global::System.Nullable<bool> CheckMega, string Sal, string Original_Id, string Original_Contraseña, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
+        public virtual int Update(string Id, string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, global::System.Nullable<bool> CheckDropbox, global::System.Nullable<bool> CheckDrive, global::System.Nullable<bool> CheckMega, string Sal, string Original_Id, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -1411,35 +2215,29 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Id));
             }
-            if ((Original_Contraseña == null)) {
-                throw new global::System.ArgumentNullException("Original_Contraseña");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Contraseña));
-            }
             if ((Original_CheckDropbox.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_CheckDropbox.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_CheckDropbox.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             if ((Original_CheckDrive.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Original_CheckDrive.Value));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_CheckDrive.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             if ((Original_CheckMega.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_CheckMega.Value));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((bool)(Original_CheckMega.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1461,8 +2259,8 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, global::System.Nullable<bool> CheckDropbox, global::System.Nullable<bool> CheckDrive, global::System.Nullable<bool> CheckMega, string Sal, string Original_Id, string Original_Contraseña, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
-            return this.Update(Original_Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega, Sal, Original_Id, Original_Contraseña, Original_CheckDropbox, Original_CheckDrive, Original_CheckMega);
+        public virtual int Update(string Contraseña, string DirDropbox, string DirDrive, string DirMega, string DirDefault, global::System.Nullable<bool> CheckDropbox, global::System.Nullable<bool> CheckDrive, global::System.Nullable<bool> CheckMega, string Sal, string Original_Id, global::System.Nullable<bool> Original_CheckDropbox, global::System.Nullable<bool> Original_CheckDrive, global::System.Nullable<bool> Original_CheckMega) {
+            return this.Update(Original_Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox, CheckDrive, CheckMega, Sal, Original_Id, Original_CheckDropbox, Original_CheckDrive, Original_CheckMega);
         }
     }
     
@@ -1478,6 +2276,8 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         
         private UpdateOrderOption _updateOrder;
         
+        private ArchivoCifradoTableAdapter _archivoCifradoTableAdapter;
+        
         private UsuarioTableAdapter _usuarioTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
@@ -1492,6 +2292,20 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             }
             set {
                 this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public ArchivoCifradoTableAdapter ArchivoCifradoTableAdapter {
+            get {
+                return this._archivoCifradoTableAdapter;
+            }
+            set {
+                this._archivoCifradoTableAdapter = value;
             }
         }
         
@@ -1528,6 +2342,10 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
                 if ((this._connection != null)) {
                     return this._connection;
                 }
+                if (((this._archivoCifradoTableAdapter != null) 
+                            && (this._archivoCifradoTableAdapter.Connection != null))) {
+                    return this._archivoCifradoTableAdapter.Connection;
+                }
                 if (((this._usuarioTableAdapter != null) 
                             && (this._usuarioTableAdapter.Connection != null))) {
                     return this._usuarioTableAdapter.Connection;
@@ -1545,6 +2363,9 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
+                if ((this._archivoCifradoTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 if ((this._usuarioTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -1568,6 +2389,15 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._archivoCifradoTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.ArchivoCifrado.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._archivoCifradoTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -1586,6 +2416,14 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._archivoCifradoTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.ArchivoCifrado.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._archivoCifradoTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -1596,6 +2434,14 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(BBDDDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._archivoCifradoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.ArchivoCifrado.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._archivoCifradoTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._usuarioTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Usuario.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -1643,6 +2489,11 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
+            if (((this._archivoCifradoTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._archivoCifradoTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
+                        "sma cadena de conexión.");
+            }
             if (((this._usuarioTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._usuarioTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
@@ -1680,6 +2531,15 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             try {
                 // ---- Prepare for update -----------
                 //
+                if ((this._archivoCifradoTableAdapter != null)) {
+                    revertConnections.Add(this._archivoCifradoTableAdapter, this._archivoCifradoTableAdapter.Connection);
+                    this._archivoCifradoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._archivoCifradoTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._archivoCifradoTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._archivoCifradoTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._archivoCifradoTableAdapter.Adapter);
+                    }
+                }
                 if ((this._usuarioTableAdapter != null)) {
                     revertConnections.Add(this._usuarioTableAdapter, this._usuarioTableAdapter.Connection);
                     this._usuarioTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -1746,6 +2606,10 @@ SELECT Id, Contraseña, DirDropbox, DirDrive, DirMega, DirDefault, CheckDropbox,
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
+                }
+                if ((this._archivoCifradoTableAdapter != null)) {
+                    this._archivoCifradoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._archivoCifradoTableAdapter]));
+                    this._archivoCifradoTableAdapter.Transaction = null;
                 }
                 if ((this._usuarioTableAdapter != null)) {
                     this._usuarioTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._usuarioTableAdapter]));

@@ -108,9 +108,15 @@ namespace Cryp2Cloud.Formularios
                             form2._usuario = usuario;
                             form._password = hash;
                             form2._principal = form;
+                            try
+                            {
+                                form2.ShowDialog();
+                                form.ShowDialog();
+                            }
+                            catch(System.NullReferenceException)
+                            {
 
-                            form2.ShowDialog();
-                            form.ShowDialog();
+                            }
                             this.Close();
                         }
                     }

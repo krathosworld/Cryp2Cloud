@@ -82,12 +82,12 @@ namespace Cryp2Cloud.Formularios
                 }
                 else
                 {
+                    String ContAleatoria = Cifrado.GenerarCadenaAleatoria(16);
+                    Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 32);
+                    String PassArchivo = Cifrado.GenerarPassAES(ContAleatoria, PassMaestra);
                     if (cifrado == ".aes")
                     {
                         //Generamos las claves necesarias para el cifrado en AES
-                        String ContAleatoria = Cifrado.GenerarCadenaAleatoria(16);
-                        Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 16);
-                        String PassArchivo = Cifrado.GenerarPassAES(ContAleatoria, PassMaestra);
                         //Se llama a la función que cifra por AES
                         if (Cifrado.CifrarAES(direccion, ContAleatoria))
                         {
@@ -98,7 +98,11 @@ namespace Cryp2Cloud.Formularios
                     else
                     {
                         //Se llama a la función que cifra por RC4
-
+                        if(Cifrado.RC4(direccion,direccion+cifrado, ContAleatoria))
+                        {
+                            InsertarArchivoBD(fileName, PassArchivo);
+                            CopiaArchivo(direccion + cifrado, fileName);
+                        }
                     }
 
                 }
@@ -148,32 +152,24 @@ namespace Cryp2Cloud.Formularios
                 }
                 else
                 {
+                    Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 32);
+                    String PassArchivo = Cifrado.DescifrarPassAES(PassBD, PassMaestra);
+                    Byte[] ContAleatoria = Cifrado.GenerarClaveByte(PassArchivo, 16);
                     //Comprueba si la extensión del archivo es AES o RC4
                     switch (System.IO.Path.GetExtension(rutaElemento))
                     {
                         case ".aes": //Caso de que sea aes
-                            Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 16);
-                            String PassArchivo = Cifrado.DescifrarPassAES(PassBD, PassMaestra);
-                            Byte[] ContAleatoria = Cifrado.GenerarClaveByte(PassArchivo, 16);
+                            //Desciframos el archivo e AES
                             Cifrado.DescifrarAES(rutaElemento, ficheroDestino, ContAleatoria);
                             break;
 
                         case ".rc4": //Caso de que sea RC4
+                            //Desciframos el archivo en RC4
+                            Cifrado.RC4(rutaElemento,ficheroDestino, PassArchivo);
 
                             break;
                         default:
                             return;
-                    }
-
-                    try
-                    {
-                        //Copia el elemento en la ruta de descargas
-                        System.IO.File.Copy(rutaElemento, ficheroDestino, true);
-                        Process.Start("explorer.exe", _dir_descarga);
-                    }
-                    catch (UnauthorizedAccessException ex)
-                    {
-                        MessageBox.Show("No tiene permisos para guardar en este directorio");
                     }
                 }
 

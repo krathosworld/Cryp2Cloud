@@ -1,0 +1,7 @@
+C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\bin\Release\Cryp2Cloud.exe.config
+C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\obj\Release\Cryp2Cloud.Formularios.Configuracion.resources
+C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\obj\Release\Cryp2Cloud.inicio.resources
+C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\obj\Release\Cryp2Cloud.Formularios.Principal.resources
+C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\obj\Release\Cryp2Cloud.Formularios.Registro.resources
+C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\obj\Release\Cryp2Cloud.Properties.Resources.resources
+C:\Users\Master\Desktop\Cryp2Cloud\Cryp2Cloud\obj\Release\Cryp2Cloud.csproj.GenerateResource.Cache

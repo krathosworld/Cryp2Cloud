@@ -133,7 +133,7 @@ namespace Cryp2Cloud.Formularios
                             PrimeraVez = false;
                             this.Close();
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             MessageBox.Show("No se ha podido conectar con la base de datos");
                             conn.Close();

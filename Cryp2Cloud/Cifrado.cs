@@ -212,13 +212,13 @@ namespace Cryp2Cloud
                 }
                 return true;
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 MessageBox.Show("CifrarAES: Fichero origen a cifrar no encontrado.", "ERROR",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 MessageBox.Show("CifrarAES: Directorio no encontrado.", "ERROR",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -286,12 +286,12 @@ namespace Cryp2Cloud
                     }
                 }
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException )
             {
                 MessageBox.Show("DescifrarAES: Fichero origen a descifrar no encontrado.", "ERROR",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 MessageBox.Show("DescifrarAES: Directorio no encontrado.", "ERROR",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -306,6 +306,69 @@ namespace Cryp2Cloud
                 //    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MessageBox.Show(e.ToString());
             }
+        }
+
+        //Cifra o descifra un archivo 'origen' mediante RC4 y lo almacena en 'destino'
+        public static Boolean RC4(string origen,string destino, string password)
+        {
+            int a, i, j, k, tmp;
+            int[] key, box;
+
+            key = new int[256];//K, key
+            box = new int[256];//S, seed
+
+            byte[] bytesKey = GenerarClaveByte(password, 16);
+
+            //Se inicializa la llave y el box
+            for (i = 0; i < 256; i++)
+            {
+                key[i] = bytesKey[i % bytesKey.Length];
+                box[i] = i;
+            }
+            //Se mezcla el array box
+            for (j = 0, i = 0; i < 256; i++)
+            {
+                j = (j + box[i] + key[i]) % 256;
+                tmp = box[i];
+                box[i] = box[j];
+                box[j] = tmp;
+            }
+            try
+            {
+                using (var entrada = new FileStream(origen, FileMode.Open, FileAccess.Read))
+                using (var salida = new FileStream(destino, FileMode.Create, FileAccess.Write))
+                {
+                    long tamEntrada = entrada.Length;
+
+                    //Se ejecuta el PRGA, XOR del pseudoaleatorio con los datos en claro
+                    for (a = 0, j = 0, i = 0; i < tamEntrada; i++)
+                    {
+                        a++;
+                        a %= 256;
+                        j += box[a];
+                        j %= 256;
+                        tmp = box[a];
+                        box[a] = box[j];
+                        box[j] = tmp;
+                        k = box[((box[a] + box[j]) % 256)];
+                        salida.WriteByte((byte)(entrada.ReadByte() ^ k));
+                    }
+                }
+                return true;
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("CifradorRC4: Fichero origen a cifrar no encontrado.", "ERROR",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                MessageBox.Show("CifradorRC4: Directorio no encontrado.", "ERROR",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
         }
     }
 }

@@ -61,9 +61,16 @@ namespace Cryp2Cloud.Formularios
             }
 
 
-            if (!resultado)
+            if (!resultado) //Si ha habido algún fallo
             {
-                MessageBox.Show(errores);
+                MessageBox.Show(errores, "Error", MessageBoxButtons.OK);
+            }
+            else if(contraseña.Length < 8) //Si no ha habido ningun fallo pero la contraseña es muy corta
+            {
+                if(MessageBox.Show("La contraseña es demasiado corta, le recomendamos que utilice una contraseña de al menos 8 dígitos \n ¿Desea seguir de todos modos?","Aviso",MessageBoxButtons.YesNo)==DialogResult.No)
+                {
+                    resultado = false;
+                }
             }
             return resultado;
         }
@@ -81,7 +88,7 @@ namespace Cryp2Cloud.Formularios
                     {
                         if (rd.HasRows)
                         {
-                            MessageBox.Show("Error: El usuario ya existe");
+                            MessageBox.Show("Error: El usuario ya existe", "Error", MessageBoxButtons.OK);
                             rd.Close();
                         }
                         else
@@ -93,8 +100,8 @@ namespace Cryp2Cloud.Formularios
                             usuarioTableAdapter = new BBDDDataSetTableAdapters.UsuarioTableAdapter();
                             String usuario = textBox_usuario.Text.ToLower();
                             String contraseña = textBox_contraseña.Text;
-                            String sal = Cifrado.GenerarCadenaAleatoria(32);
-                            String hash = Cifrado.GenerarSaltedHash(contraseña, sal);
+                            String sal = Cifrado.CrearClaveAleatoria(32);
+                            String hash = Cifrado.obtenerHashCifrado(contraseña, sal);
 
                             //Insertamos el nuevo usuario en la base de datos
                             usuarioTableAdapter.Insert(usuario, hash, null, null, null, null, false, false, false,sal);
@@ -102,6 +109,9 @@ namespace Cryp2Cloud.Formularios
                             this.Hide();
                             Formularios.Principal form = new Formularios.Principal();
                             Formularios.Configuracion form2 = new Formularios.Configuracion();
+
+                            form.StartPosition = FormStartPosition.CenterScreen;
+                            form2.StartPosition= FormStartPosition.CenterScreen;
 
                             //Cargamos el usuario en el resto de formularios
                             form._usuario = usuario;
@@ -189,6 +199,14 @@ namespace Cryp2Cloud.Formularios
             {
                 textBox_contraseña.PasswordChar = '\0';
                 textBox_contraseña.Text = "Contraseña:";
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_acceder.PerformClick();
             }
         }
     }

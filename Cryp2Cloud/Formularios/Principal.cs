@@ -67,7 +67,7 @@ namespace Cryp2Cloud.Formularios
             }
             else
             {
-                MessageBox.Show("Debe introducir un método de cifrado");
+                MessageBox.Show("Debe introducir un método de cifrado","Atención",MessageBoxButtons.OK);
                 return;
             }
 
@@ -82,9 +82,9 @@ namespace Cryp2Cloud.Formularios
                 }
                 else
                 {
-                    String ContAleatoria = Cifrado.GenerarCadenaAleatoria(16);
+                    String ContAleatoria = Cifrado.CrearClaveAleatoria(16);
                     Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 32);
-                    String PassArchivo = Cifrado.GenerarPassAES(ContAleatoria, PassMaestra);
+                    String PassArchivo = Cifrado.CifrarPassArchivoAES(ContAleatoria, PassMaestra);
                     if (cifrado == ".aes")
                     {
                         //Generamos las claves necesarias para el cifrado en AES
@@ -109,7 +109,11 @@ namespace Cryp2Cloud.Formularios
             }
             if(error!="")
             {
-                MessageBox.Show(error);
+                MessageBox.Show(error,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Todos los archivos se han cifrado con éxito","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             listaArchivos.Clear();
             rutas.Clear();
@@ -137,23 +141,26 @@ namespace Cryp2Cloud.Formularios
         //Desencripta los archivos seleccionados del panel de control derecho en la carpeta de descarga seleccionada
         private void btn_decrypt_Click(object sender, EventArgs e)
         {
-            GongSolutions.Shell.ShellItem[] elementos = Vista_carpeta.SelectedItems;
-            foreach(GongSolutions.Shell.ShellItem elemento in elementos)
+            //GongSolutions.Shell.ShellItem[] elementos = Vista_carpeta.SelectedItems;
+            //foreach(GongSolutions.Shell.ShellItem elemento in elementos)
+            //{
+                //String rutaElemento = elemento.FileSystemPath;
+            foreach (String rutaElemento in rutas)
             {
-                String rutaElemento = elemento.FileSystemPath;
                 String nombreElemento = System.IO.Path.GetFileName(rutaElemento);
                 String PassBD = buscarArchivoBD(nombreElemento);
                 String nombre = System.IO.Path.GetFileNameWithoutExtension(rutaElemento);
                 String ruta = System.IO.Path.GetDirectoryName(rutaElemento);
                 String ficheroDestino = System.IO.Path.Combine(_dir_descarga, nombre);
+                String error = "";
                 if (PassBD == "")
                 {
-
+                    error += "El archivo " + nombreElemento + " no está cifrado\n";
                 }
                 else
                 {
                     Byte[] PassMaestra = Cifrado.GenerarClaveByte(_password, 32);
-                    String PassArchivo = Cifrado.DescifrarPassAES(PassBD, PassMaestra);
+                    String PassArchivo = Cifrado.DescifrarPassArchivoAES(PassBD, PassMaestra);
                     Byte[] ContAleatoria = Cifrado.GenerarClaveByte(PassArchivo, 16);
                     //Comprueba si la extensión del archivo es AES o RC4
                     switch (System.IO.Path.GetExtension(rutaElemento))
@@ -173,26 +180,58 @@ namespace Cryp2Cloud.Formularios
                     }
                 }
 
+                if(error!="")
+                {
+                    MessageBox.Show(error,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Todos los archivos se han descifrado con éxito","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+
             }
-            
+            listaArchivos.Clear();
+            rutas.Clear();
+            Process.Start("explorer.exe", _dir_descarga);
         }
 
         //Cargamos en una lista los directorios de los servicios que debemos de copiar
-        private void CargarMétodos()
+        public void CargarMétodos()
         {
             //Limpiamos la lista de cifrado por si hubieran cambiado sus valores
             rutasCifrado.Clear();
             if(_checkDrive)
             {
                 rutasCifrado.Add(_dirDrive);
+                bt_drive.BackgroundImage = Cryp2Cloud.Properties.Resources.Google_Drive_icon;
+                bt_drive.Cursor = Cursors.Hand;
             }
-            if(_checkDrop)
+            else
+            {
+                bt_drive.Cursor = Cursors.Arrow;
+                bt_drive.BackgroundImage = Cryp2Cloud.Properties.Resources.Google_Drive_icon_bn;
+            }
+            if (_checkDrop)
             {
                 rutasCifrado.Add(_dirDrop);
+                bt_dropbox.BackgroundImage = Cryp2Cloud.Properties.Resources.dropbox_xxl;
+                bt_dropbox.Cursor = Cursors.Hand;
             }
-            if(_checkMega)
+            else
+            {
+                bt_dropbox.BackgroundImage = Cryp2Cloud.Properties.Resources.dropbox_xxl_bn;
+                bt_dropbox.Cursor = Cursors.Arrow;
+            }
+            if (_checkMega)
             {
                 rutasCifrado.Add(_dirMega);
+                bt_mega.BackgroundImage = Cryp2Cloud.Properties.Resources.unnamed;
+                bt_mega.Cursor = Cursors.Hand;
+            }
+            else
+            {
+                bt_mega.BackgroundImage = Cryp2Cloud.Properties.Resources.mega_bn;
+                bt_mega.Cursor = Cursors.Arrow;
             }
         }
 
@@ -269,6 +308,7 @@ namespace Cryp2Cloud.Formularios
         private void btn_ajustes_Click(object sender, EventArgs e)
         {
             Formularios.Configuracion form = new Formularios.Configuracion();
+            form.StartPosition = FormStartPosition.CenterScreen;
             form._usuario = this._usuario;
             form._principal = this;
             form.ShowDialog();
@@ -276,12 +316,12 @@ namespace Cryp2Cloud.Formularios
 
         private void btn_crypt_MouseEnter(object sender, EventArgs e)
         {
-            btn_crypt.BackgroundImage = Cryp2Cloud.Properties.Resources.crypt_presionado;
+            btn_crypt.BackgroundImage = Cryp2Cloud.Properties.Resources.Cifrar1;
         }
 
         private void btn_crypt_MouseLeave(object sender, EventArgs e)
         {
-            btn_crypt.BackgroundImage = Cryp2Cloud.Properties.Resources.crypt_normal;
+            btn_crypt.BackgroundImage = Cryp2Cloud.Properties.Resources.Cifrar2;
         }
 
         private void btn_añadir_archivo_MouseEnter(object sender, EventArgs e)
@@ -296,18 +336,61 @@ namespace Cryp2Cloud.Formularios
 
         private void btn_decrypt_MouseEnter(object sender, EventArgs e)
         {
-            btn_decrypt.BackgroundImage = Cryp2Cloud.Properties.Resources.decrypt_normal;
+            btn_decrypt.BackgroundImage = Cryp2Cloud.Properties.Resources.Descifrar1;
         }
 
         private void btn_decrypt_MouseLeave(object sender, EventArgs e)
         {
-            btn_decrypt.BackgroundImage = Cryp2Cloud.Properties.Resources.decrypt_precionado;
+            btn_decrypt.BackgroundImage = Cryp2Cloud.Properties.Resources.Descifrar2;
         }
 
-        private void Principal_Activated(object sender, EventArgs e)
+        private void botonPasar_Click(object sender, EventArgs e)
         {
-            this.Refresh();
-            CargarMétodos();
+            GongSolutions.Shell.ShellItem[] elementos = Vista_carpeta.SelectedItems;
+            foreach (GongSolutions.Shell.ShellItem elemento in elementos)
+            {   
+                if (!elemento.IsFolder) //Comprueba que no se trate de una carpeta
+                {
+                    String rutaElemento = elemento.FileSystemPath;
+                    listaArchivos.Items.Add(Path.GetFileName(rutaElemento), 0);
+                    //Guardar en un array las direcciones de cada archivo
+                    rutas.Add(rutaElemento); //Agrega la ruta del archivo a la lista de rutas de los archivos
+                }
+            }
+        }
+
+        private void botonPasar_MouseEnter(object sender, EventArgs e)
+        {
+            botonPasar.BackgroundImage = Cryp2Cloud.Properties.Resources.crypt_presionado;
+        }
+
+        private void botonPasar_MouseLeave(object sender, EventArgs e)
+        {
+            botonPasar.BackgroundImage = Cryp2Cloud.Properties.Resources.crypt_normal;
+        }
+
+        private void bt_dropbox_Click(object sender, EventArgs e)
+        {
+            if(_checkDrop)
+            {
+                Process.Start("explorer.exe", _dirDrop);
+            }
+        }
+
+        private void bt_drive_Click(object sender, EventArgs e)
+        {
+            if (_checkDrive)
+            {
+                Process.Start("explorer.exe", _dirDrive);
+            }
+        }
+
+        private void bt_mega_Click(object sender, EventArgs e)
+        {
+            if (_checkMega)
+            {
+                Process.Start("explorer.exe", _dirMega);
+            }
         }
     }
 }

@@ -118,43 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="añadir_archivos1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\añadir_archivos1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="crypt_presionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Double_Right-pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Iniciar_sesion1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Iniciar_sesion1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="crypt_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Double_Right-normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Guardar_cambios1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\grardar_cambios1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Acceder1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Acceder1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="crear_cuenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Boton 8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Iniciar_sesion1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Iniciar_sesion1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="decrypt_precionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Double_Right-pressed2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="crypt_presionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Double_Right-pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="añadir_archivos2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\añadir_archivos2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Acceder2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Acceder2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="crypt_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Double_Right-normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="decrypt_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Double_Right-normal2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Guardar_cambios2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Guardar_cambios2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Descifrar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Descifrar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="decrypt_precionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Double_Right-pressed2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crear_cuenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Boton 8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="añadir_archivos1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\añadir_archivos1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="añadir_archivos2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\añadir_archivos2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Descifrar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Descifrar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Acceder2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Acceder2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Iniciar_sesion2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Iniciar_sesion2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Guardar_cambios1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\grardar_cambios1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cifrar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cifrar21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Guardar_cambios2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Guardar_cambios2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cifrar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cifrar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropbox_xxl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dropbox-xxl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropbox_xxl_bn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dropbox-xxl-bn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Google_Drive_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Google-Drive-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Google_Drive_icon_bn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Google-Drive-icon-bn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mega_bn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mega-bn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="unnamed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unnamed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

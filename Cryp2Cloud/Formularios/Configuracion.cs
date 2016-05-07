@@ -39,7 +39,7 @@ namespace Cryp2Cloud.Formularios
         {
             if (PrimeraVez)
             {
-                MessageBox.Show("Debe guardar los cambios al menos una vez");
+                MessageBox.Show("Debe guardar los cambios al menos una vez", "Atención", MessageBoxButtons.OK);
                 e.Cancel = true;
             }
 
@@ -84,23 +84,23 @@ namespace Cryp2Cloud.Formularios
         {
             if(!check_dropbox.Checked && !check_drive.Checked && !check_mega.Checked)
             {
-                MessageBox.Show("Debe seleccionar un servicio");
+                MessageBox.Show("Debe seleccionar al menos un servicio","Atención",MessageBoxButtons.OK);
             }
             else if(!Directory.Exists(textBox_descargas.Text)) //Comprueba que la ruta especificada exista en el ordenador
             {
-                MessageBox.Show("La ruta de descargas no es válida, por favor introdúzcala de nuevo");
+                MessageBox.Show("La ruta de descargas no es válida, por favor introdúzcala de nuevo", "Error", MessageBoxButtons.OK);
             }
             else if (!Directory.Exists(textBox_drive.Text) && check_drive.Checked) //Comprueba que la ruta especificada exista en el ordenador (Sólo si ésta ha sido seleccionada)
             {
-                MessageBox.Show("La ruta de drive no es válida, por favor introdúzcala de nuevo");
+                MessageBox.Show("La ruta de drive no es válida, por favor introdúzcala de nuevo", "Error", MessageBoxButtons.OK);
             }
             else if (!Directory.Exists(textBox_dropbox.Text) && check_dropbox.Checked) //Comprueba que la ruta especificada exista en el ordenador (Sólo si ésta ha sido seleccionada)
             {
-                MessageBox.Show("La ruta de dropbox no es válida, por favor introdúzcala de nuevo");
+                MessageBox.Show("La ruta de dropbox no es válida, por favor introdúzcala de nuevo", "Error", MessageBoxButtons.OK);
             }
             else if (!Directory.Exists(textBox_mega.Text) && check_mega.Checked) //Comprueba que la ruta especificada exista en el ordenador (Sólo si ésta ha sido seleccionada)
             {
-                MessageBox.Show("La ruta de mega no es válida, por favor introdúzcala de nuevo");
+                MessageBox.Show("La ruta de mega no es válida, por favor introdúzcala de nuevo", "Error", MessageBoxButtons.OK);
             }
             else
             {
@@ -130,12 +130,13 @@ namespace Cryp2Cloud.Formularios
                             _principal._dirDrop = textBox_dropbox.Text;
                             _principal._dirMega = textBox_mega.Text;
                             _principal._dir_descarga = textBox_descargas.Text;
+                            _principal.CargarMétodos();
                             PrimeraVez = false;
                             this.Close();
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show("No se ha podido conectar con la base de datos");
+                            MessageBox.Show("No se ha podido conectar con la base de datos","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             conn.Close();
                         }
                         

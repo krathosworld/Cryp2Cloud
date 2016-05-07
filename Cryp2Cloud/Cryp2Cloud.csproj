@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Master\Desktop\</PublishUrl>
+    <PublishUrl>C:\Users\Master\Desktop\CD-ROM\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -209,6 +209,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>MiBaseDeDatos.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Google-Drive-icon.png" />
+    <None Include="Resources\dropbox-xxl.png" />
+    <None Include="Resources\unnamed.png" />
+    <None Include="Resources\dropbox-xxl-bn.png" />
+    <None Include="Resources\mega-bn.png" />
+    <None Include="Resources\Google-Drive-icon-bn.png" />
+    <None Include="Resources\Cifrar1.png" />
+    <None Include="Resources\Cifrar21.png" />
+    <None Include="Resources\Cifrar11.png" />
+    <None Include="Resources\Cifrar2.png" />
+    <None Include="Resources\Descifrar1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

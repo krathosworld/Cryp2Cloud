@@ -38,12 +38,13 @@ namespace Cryp2Cloud
                                 String id = rd["Id"].ToString();
                                 String passwd = rd["Contraseña"].ToString();
                                 String sal = rd["Sal"].ToString();
-                                string hash = Cifrado.GenerarSaltedHash(textBox_contraseña.Text, sal);
+                                string hash = Cifrado.obtenerHashCifrado(textBox_contraseña.Text, sal);
 
                                 if(hash.Equals(passwd))
                                 {
                                     this.Hide();
                                     Formularios.Principal form = new Formularios.Principal();
+                                    form.StartPosition = FormStartPosition.CenterScreen;
                                     form._usuario = textBox_usuario.Text;
                                     form._password = passwd;
                                     form.ShowDialog();
@@ -54,7 +55,7 @@ namespace Cryp2Cloud
                         }
                         else
                         {
-                            MessageBox.Show("El nombre de usuario o la contraseña no son correctas");
+                            MessageBox.Show("El nombre de usuario o la contraseña no son correctas","Error",MessageBoxButtons.OK);
                             rd.Close();
                         }
                         
@@ -71,7 +72,7 @@ namespace Cryp2Cloud
         {
             this.Hide();
             Formularios.Registro form = new Formularios.Registro();
-            form.Location = this.Location;
+            form.StartPosition = FormStartPosition.CenterScreen;
             form.ShowDialog();
             this.Close();
         }
@@ -127,6 +128,14 @@ namespace Cryp2Cloud
             {
                 textBox_contraseña.PasswordChar = '\0';
                 textBox_contraseña.Text = "Contraseña:";
+            }
+        }
+
+        private void textBox_contraseña_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+            {
+                btn_iniciar_sesion.PerformClick();
             }
         }
     }

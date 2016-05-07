@@ -82,6 +82,7 @@
             this.textBox_contraseña.TabIndex = 2;
             this.textBox_contraseña.Text = "Contraseña:";
             this.textBox_contraseña.Enter += new System.EventHandler(this.textBox_contraseña_Enter);
+            this.textBox_contraseña.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_contraseña_KeyDown);
             this.textBox_contraseña.Leave += new System.EventHandler(this.textBox_contraseña_Leave);
             // 
             // btn_crear_cuenta

@@ -12,7 +12,7 @@ namespace Cryp2Cloud
     class Cifrado
     {
         //Genera un hash salteado como string a partir de la 'password' y 'salt' pasada
-        public static string GenerarSaltedHash(string password, string salt)
+        public static string obtenerHashCifrado(string password, string salt)
         {
             SHA256CryptoServiceProvider sha256 = new SHA256CryptoServiceProvider();
 
@@ -39,7 +39,7 @@ namespace Cryp2Cloud
         }
 
         //Se genera una cadena aleatoria de determinado tamaño
-        public static string GenerarCadenaAleatoria(int tam)
+        public static string CrearClaveAleatoria(int tam)
         {   // 26x2 letras - 10 num - 12 especiales
             char[] charPosibles = {   'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
                                       'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
@@ -86,7 +86,7 @@ namespace Cryp2Cloud
 
 
         //Cifra un texto en AES, la contraseña se pasa ya crifrada mediante SHA de 32 bytes
-        public static string GenerarPassAES(string text, Byte[] password)
+        public static string CifrarPassArchivoAES(string text, Byte[] password)
         {
             //Crea el AES Crypto Service Provider
             var aes = new AesCryptoServiceProvider()
@@ -118,7 +118,7 @@ namespace Cryp2Cloud
         }
 
         //Descifra un texto en AES
-        public static string DescifrarPassAES(string passArchivo, byte[] password)
+        public static string DescifrarPassArchivoAES(string passArchivo, byte[] password)
         {
             //Crea el AES Crypto Service Provider
             var aes = new AesCryptoServiceProvider()

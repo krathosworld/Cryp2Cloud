@@ -392,5 +392,14 @@ namespace Cryp2Cloud.Formularios
                 Process.Start("explorer.exe", _dirMega);
             }
         }
+
+        private void menuContextual_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if(e.ClickedItem.Text=="Vaciar")
+            {
+                listaArchivos.Clear();
+                rutas.Clear();
+            }
+        }
     }
 }

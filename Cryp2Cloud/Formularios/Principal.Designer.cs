@@ -44,6 +44,9 @@
             this.bt_mega = new System.Windows.Forms.Button();
             this.bt_drive = new System.Windows.Forms.Button();
             this.bt_dropbox = new System.Windows.Forms.Button();
+            this.menuContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Vaciar = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuContextual.SuspendLayout();
             this.SuspendLayout();
             // 
             // lista_cifrado
@@ -175,6 +178,7 @@
             // 
             this.listaArchivos.AllowDrop = true;
             this.listaArchivos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listaArchivos.ContextMenuStrip = this.menuContextual;
             this.listaArchivos.LargeImageList = this.imageList1;
             this.listaArchivos.Location = new System.Drawing.Point(556, 120);
             this.listaArchivos.Name = "listaArchivos";
@@ -269,6 +273,20 @@
             this.bt_dropbox.UseVisualStyleBackColor = false;
             this.bt_dropbox.Click += new System.EventHandler(this.bt_dropbox_Click);
             // 
+            // menuContextual
+            // 
+            this.menuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Vaciar});
+            this.menuContextual.Name = "menuContextual";
+            this.menuContextual.Size = new System.Drawing.Size(153, 48);
+            this.menuContextual.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuContextual_ItemClicked);
+            // 
+            // Vaciar
+            // 
+            this.Vaciar.Name = "Vaciar";
+            this.Vaciar.Size = new System.Drawing.Size(152, 22);
+            this.Vaciar.Text = "Vaciar";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +313,7 @@
             this.Opacity = 0.98D;
             this.Text = "Cryp2Cloud";
             this.Load += new System.EventHandler(this.Principal_Load);
+            this.menuContextual.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,5 +335,7 @@
         private System.Windows.Forms.Button bt_mega;
         private System.Windows.Forms.Button bt_drive;
         private System.Windows.Forms.Button bt_dropbox;
+        private System.Windows.Forms.ContextMenuStrip menuContextual;
+        private System.Windows.Forms.ToolStripMenuItem Vaciar;
     }
 }

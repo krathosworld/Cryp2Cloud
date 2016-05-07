@@ -74,9 +74,14 @@ namespace Cryp2Cloud.Formularios
             String error = "";
             foreach (String direccion in rutas)
             {
+                String fileExtension = System.IO.Path.GetExtension(direccion);
                 String fileName = System.IO.Path.GetFileName(direccion) + cifrado;
                 //Comprobar si el archivo ya existe en la BD
-                if (buscarArchivoBD(fileName)!="")
+                if (fileExtension==".aes" || fileExtension==".rc4")
+                {
+                    error += "El archivo " + fileName + " ya está cifrado\n";
+                }
+                else if (buscarArchivoBD(fileName)!="")
                 {
                     error += "El archivo " + fileName + " ya ha sido cifrado\n";
                 }
